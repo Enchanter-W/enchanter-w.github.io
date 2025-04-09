@@ -8,142 +8,118 @@ category: 安全
 draft: false
 ---
 
-# Windows权限提升全维度指南
+- # Windows权限提升
 
-## 一、Windows权限体系深度解析
-### 1. 权限控制核心组件
-```markdown
-SID结构解析：
-S-R-X-Y (示例：S-1-5-21-3623811015-3361044348-30300820-1013)
-- S：固定标识符
-- R：修订版本（通常为1）
-- X：标识颁发机构（如5表示NT Authority）
-- Y：子颁发机构组（如21表示非唯一标识符）
+  ## 一、Windows信息枚举
 
-访问令牌(Access Token)：
-包含用户SID、组SID、特权列表、所有者SID等元数据。通过`whoami /all`可查看当前令牌详情 [6]
+  ### （一）Windows权限及访问控制介绍
 
-UAC机制：
-采用双令牌架构，管理员账户拥有：
-- 筛选令牌（普通权限）
-- 完全令牌（高权限）
-触发UAC需满足完整性级别>= High [10]
-```
+  Windows通过SID、access token、MIC、UAC等来进行权限控制。
 
-### 2. 权限等级分层模型
-```mermaid
-flowchart TD
-    A[TrustedInstaller] -->|系统文件控制| B(System)
-    B -->|服务/驱动| C(Administrator)
-    C -->|UAC管控| D(User)
-    D -->|受限账户| E(Low)
-```
-- **System**：SYSTEM用户权限，可访问SAM等核心组件 [5]
-- **High**：管理员组用户（需UAC确认）
-- **Medium**：标准用户权限（默认级别）
-- **Low**：沙箱/服务账户权限（如IIS应用池账户）[6]
+  **SID**是一个用来区分不同实体的独特编码，其通过LSA来进行产生，在域中由DC进行产生，在生成后无法进行任何修改。SID的格式为“S-R-X-Y”，其中：
 
-## 二、系统信息深度枚举策略
-### 1. 基础信息采集矩阵
-```powershell
-# 用户拓扑分析
-Get-LocalUser | Select Name, SID, Enabled 
-Get-LocalGroupMember "Remote Desktop Users"
+  - “S”表示这是一个SID。
+  - “R”表示SID的修订版本。
+  - “X”表示标识符权威，表明SID是由哪个机构或系统生成的。
+  - “Y”表示子权威值，用于区分同一标识符权威下不同的用户或组。例如，“S-1-5-21-1234567890-1234567890-1234567890-1001”是一个用户账户的SID。
 
-# 系统指纹识别
-systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
-wmic qfe get HotFixID | findstr KB500443
+  **Access token**在用户进行登录时由系统产生给用户。用户在创建一个进程时会给进程赋予一个primary token来提示进程具有哪些权限等。
 
-# 应用资产测绘
-Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" | 
-    Select DisplayName, DisplayVersion, Publisher
-```
+  Windows拥有四个权限等级：
 
-### 2. 网络拓扑测绘技术
-```powershell
-# ARP缓存分析
-arp -a | findstr dynamic
+  - **System**：system、kernel，拥有最高权限，几乎可以访问和操作系统的任何部分。
+  - **High**：高权限用户，通常是指管理员账户，可以进行大部分系统管理和配置操作。
+  - **Medium**：普通权限用户，一般是指标准用户账户，权限相对受限，无法进行一些关键的系统设置更改。
+  - **Low**：权限受限账户，如www-data等服务账户，权限非常有限，主要用于运行一些特定的服务，防止这些服务被恶意利用时对系统造成较大危害。
 
-# 路由策略提取
-route print | findstr 0.0.0.0
+  **UAC**（用户账户控制）提供了一种方法使管理员等高权限用户拥有两个不同权限的access token，能够在普通权限和高权限之间切换赋予进程权限。
 
-# 活动连接检测
-netstat -ano | findstr ESTABLISHED
-```
+  ### （二）系统基本信息探测
 
-### 3. 敏感信息狩猎技术
-```powershell
-# 快速定位密码文件
-Get-ChildItem -Path C:\ -Include *.config, *.xml, *.ini -Recurse -ErrorAction SilentlyContinue |
-    Select FullName | Out-File scan_result.txt
+  #### 1. 几个基本的需要确认的信息
 
-# 凭据文件深度挖掘
-Select-String -Path C:\Users\*\AppData\Roaming\*.ini -Pattern "password="
-```
+  - 用户名（username）和主机名（hostname）
+  - 当前用户的用户组（group）
+  - 存在的用户和组
+  - 系统的版本和补丁等
+  - 网络侧信息，网段等
+  - 系统中安装的应用
+  - 正在运行的进程
 
-## 三、用户上下文切换技术
-### 1. PsExec高级用法
-```powershell
-# 远程凭据注入（需SMB开放）
-PsExec.exe \\target -u domain\user -p password -h cmd.exe
+  #### 2. 用户/组信息收集
 
-# 隐蔽执行模式
-PsExec -s -d -c malware.exe
-```
-- `/accepteula`：绕过许可协议
-- `-i`：交互式会话建立
+  ```powershell
+  CMD:
+      whoami
+      whoami /groups
+  PowerShell:
+      Get-LocalUser
+      Get-LocalGroup
+      Get-LocalGroupMember xxx(组名)
+  ```
 
-### 2. 受限环境下的凭证重用
-```powershell
-# 提取RDP连接历史
-Get-ChildItem "HKLM:\SOFTWARE\Microsoft\Terminal Server Client\Servers"
+  #### 3. 系统信息收集
 
-# 破解VNC配置
-Get-ItemProperty "HKCU:\Software\ORL\WinVNC3\Password"
-```
+  ```powershell
+  systeminfo
+  ipconfig /all
+  route print
+  netstat -ano
+  Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname //64位系统
+  Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Windows\CurrentVersion\Uninstall\*" | select displayname //32位系统
+  Get-Process //查看进程
+  ```
 
-## 四、PowerShell痕迹追踪
-### 1. 历史记录深度提取
-```powershell
-# 跨用户历史提取
-Get-Content "C:\Users\*\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\*" -ErrorAction SilentlyContinue
+  ### （三）在系统中寻找敏感信息
 
-# 内存命令回溯
-(Get-PSReadlineOption).HistorySavePath | Get-Content
-```
+  **敏感文件查找**——利用Get-ChildItem
 
-### 2. PowerShell远程管理
-```powershell
-# 建立远程会话
-$cred = Get-Credential
-Enter-PSSession -ComputerName DC01 -Credential $cred
+  ```powershell
+  Get-ChildItem -Path C:\(基目录) -Include *.扩展名,可以多选 -File -Recurse -ErrorAction SilentlyContinue //静默错误
+  type 文件 cat 文件 //用来读取信息两个都能用没区别
+  ```
 
-# 文件传输通道
-Invoke-Command -ComputerName DC01 -ScriptBlock { 
-    Get-ChildItem C:\敏感目录 
-} -Credential $cred
-```
+  **获得密码后在命令行中如何切换用户**
 
-## 五、自动化提权工具链
-### WinPEAS深度剖析
-```artifact
-id: winpeas-flow
-name: WinPEAS检测流程
-type: mermaid
-content: |-
-  graph TD
-    A[启动检测] --> B{系统信息收集}
-    B --> C[补丁状态分析]
-    B --> D[服务配置审计]
-    B --> E[注册表键值扫描]
-    C --> F[已知漏洞匹配]
-    D --> G[可写服务路径检测]
-    E --> H[AlwaysInstallElevated检查]
-    F --> I[生成漏洞利用建议]
-    G --> J[路径劫持方案]
-    H --> K[MSI安装提权策略]
-```
-核心检测模块：
-- **Services**: 检查可修改的BINARY_PATH
-- **Registry**: 扫描自动运行键值
-- **Files**: 查找全局可写目录 
+  使用Runas。但是这个有局限性，如果你没有GUI界面的话无法调起UAC授权界面来输入密码，所以无法进行用户切换。为此我们可以使用PsExec脚本来实现切换用户。使用方法如下：
+
+  - 首先需要下载PsExec工具，将其放置在可执行的目录下。
+  - 然后在命令行中使用以下命令格式进行用户切换：`psexec -u 用户名 -p 密码 命令`，例如`psexec -u administrator -p password cmd`，即可以管理员身份打开一个新的命令提示符窗口。
+
+  ### （四）寻找PS中的敏感信息
+
+  **利用条件和原因**：powershell存在记录命令历史的功能，这个功能由两个不同的方式来提供，一般通过clear-history清除的只有其中一个，另一个没有清除的历史里面还记录了transcription脚本的内容等信息（PSReadline）。
+
+  **Get-history**
+
+  ```powershell
+  Get-history //查询容易被清空的历史记录
+  ```
+
+  **Get-PSReadlineOption**
+
+  ```powershell
+  Get-PSReadlineOption //获取PSReadline的信息
+  ```
+
+  *HistorySavePath*：如`C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt`，这个地方存着历史信息，通过`type`来查看内容。
+
+  **Enter-PSSession**是什么有什么作用？怎么用？
+
+  - **Enter-PSSession**是PowerShell的一个命令，用于建立与远程计算机的交互式会话，使用户能够在远程计算机上直接运行命令，就像在本地计算机上一样。它允许用户在远程系统上执行脚本、管理服务、配置设置等操作。
+  - 使用方法：`Enter-PSSession -ComputerName 计算机名 -Credential 用户名`，例如`Enter-PSSession -ComputerName remotePC -Credential domain\user`，然后输入密码即可建立会话。
+
+  ### （五）在命令行中获取到的交互式shell存在问题时的解决方法
+
+  当在命令行中获取到的交互式shell存在问题时，可以通过evil-winrm工具来进行操作。evil-winrm是一个基于Ruby的工具，它允许用户通过WinRM协议与Windows系统进行交互，具有较好的稳定性和功能扩展性。
+
+  ### （六）自动化工具——以winpeas举例
+
+  **winpeas**是一个用于Windows系统的信息收集和权限提升辅助工具，它会自动收集系统中的各种信息，包括但不限于用户信息、系统配置、网络连接、运行的进程等，并尝试寻找可能的权限提升点。
+
+  - **回显内容解释**：
+    - **用户信息**：列出系统中存在的用户账户及其所属组，帮助攻击者了解当前系统中可能存在的高权限账户。
+    - **系统配置信息**：包括系统版本、补丁信息、安装的应用程序等，这些信息有助于攻击者判断系统是否存在已知的漏洞，从而选择合适的攻击方法。
+    - **网络连接信息**：显示当前系统的网络连接状态、IP地址、网关等信息，这对于攻击者进行横向移动或寻找其他攻击目标非常有帮助。
+    - **运行的进程信息**：列出系统中正在运行的进程及其对应的用户权限，攻击者可以寻找具有高权限的进程，尝试通过进程注入等方法提升自己的权限。
+    - **权限提升点提示**：winpeas会根据收集到的信息，分析出可能的权限提升点，如未修复的漏洞、配置不当的服务等，并给出相应的提示和建议。
