@@ -6,7 +6,6 @@ image: ./cover13.jpg
 tags: [安全, 密码, 攻防]
 category: 安全
 draft: false
-license: GPL
 ---
 # 密码攻击攻防指南
 
