@@ -2,7 +2,7 @@
 title: Misdirection
 published: 2025-04-09
 description: 'Misdirection靶机渗透测试复盘'
-image: './images/Misdriction_cover.png'
+image: ./images/Misdriction_cover.png
 tags: [CTF, 渗透测试, Linux提权]
 category: 'Writeup'
 draft: false 
