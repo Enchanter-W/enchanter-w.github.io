@@ -6,6 +6,7 @@ image: ./cover16.jpg
 tags: [权限提升, OSCP]
 category: 安全
 draft: false
+license: GPL
 ---
 
 # Windows权限提升全维度指南
