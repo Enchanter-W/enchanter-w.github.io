@@ -2,7 +2,7 @@
 title: Djinn
 published: 2025-04-11
 description: 确实不会写python啊
-image: ./images/Djinn_cover
+image: ./images/Djinn_cover.jpg
 tags: [渗透测试, CTF, pyc反编译, RCE绕过]
 category: Writeup
 draft: false
