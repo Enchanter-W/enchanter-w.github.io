@@ -2,7 +2,7 @@
 title: "DerpNStink 靶机渗透实战：从信息收集到 Root 提权"
 published: 2025-04-11
 description: "最推荐的一集"
-image: ./DerpNStink_cover.jpg
+image: ./images/DerpNStink_cover.jpg
 tags: [渗透测试, 漏洞利用, WordPress, Metasploit, Linux提权]
 category: Writeup
 draft: false  
