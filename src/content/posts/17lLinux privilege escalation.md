@@ -1,0 +1,152 @@
+---
+title: "Linux Privilege Escalation"
+published: 2025-04-15
+description: "Linux权限提升"
+image: ./images/Linux_esc_cover.jpg
+tags: [Linux提权]
+category: OSCP
+draft: false  
+---
+# Linux Privilege Escalation
+
+## 枚举Linux操作系统
+
+### Linux文件系统的权限架构
+
+```bash
+┌──(enchanter㉿kali)-[~]
+└─$ ls -laih /etc/shadow
+4457894 -rw-r----- 1 root shadow 1.9K  3月23日 14:27 /etc/shadow
+┌──(enchanter㉿kali)-[~]
+└─$ ls -laih /etc/passwd
+4457663 -rw-r--r-- 1 root root 4.2K  3月23日 14:27 /etc/passwd
+```
+
+在Linux中文件的权限属性通过三个标识符来确认 rwx 读取、写入、执行。
+
+```bash
+┌──(enchanter㉿kali)-[~]
+└─$ ls -laih fscan
+314829 -rwxrwxrwx 1 root root 6.8M 2024年 5月11日 fscan
+```
+
+例如这个文件，第一个“-”表示这是一个文件，不是“d”目录。剩下每三位代表一个用户的权限，在这个例子中所有人都对fscan这个文件具有rwx权限。
+
+除了rwx三个权限标识符之外还有另外的两个权限`setuid、setgid`。他们共同用一个`s`标识符来表示。
+
+正常来说我们运行一个可执行文件时候，这个文件就会继承我们执行它的账户的权限。但是当一个文件拥有s标识符时这个文件会以这个文件的拥有者的权限来执行，如果一个文件由root所创建并且拥有s标识符的时候，我们就有机会利用这个文件来提权。
+
+例如我们在拥有一个root用户的定时任务的情况下我们可以向其中添加`chmod +s /bin/bash`来进行提权，待脚本成功执行后我们`/bin/bash -p`添加-p参数表示以能执行的最高权限来执行，从而获得root bash
+
+### 手动枚举
+
+通过查阅passwd文件我们可以知道当前系统都存在哪些用户，进而我们可以逐个到他们的家目录来进行查看（如果有权限的话）
+
+```bash
+┌──(enchanter㉿kali)-[~]
+└─$ cat /etc/passwd |grep /bin/
+root:x:0:0:root:/root:/usr/bin/zsh
+sync:x:4:65534:sync:/bin:/bin/sync
+mysql:x:100:107:MySQL Server,,,:/nonexistent:/bin/false
+cntlm:x:102:65534::/var/run/cntlm:/bin/sh
+tss:x:103:109:TPM software stack,,,:/var/lib/tpm:/bin/false
+debian-tor:x:107:112::/var/lib/tor:/bin/false
+clamav:x:114:118::/var/lib/clamav:/bin/false
+arpwatch:x:117:123:ARP Watcher,,,:/var/lib/arpwatch:/bin/sh
+gpsd:x:127:20:GPSD system user,,,:/run/gpsd:/bin/false
+Debian-snmp:x:128:133::/var/lib/snmp:/bin/false
+speech-dispatcher:x:130:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+postgres:x:132:137:PostgreSQL administrator,,,:/var/lib/postgresql:/bin/bash
+lightdm:x:135:141:Light Display Manager:/var/lib/lightdm:/bin/false
+sddm:x:137:143:Simple Desktop Display Manager:/var/lib/sddm:/bin/false
+enchanter:x:1000:1000:Enchanter,,,:/home/enchanter:/usr/bin/zsh
+Debian-gdm:x:108:113:Gnome Display Manager:/var/lib/gdm3:/bin/false
+
+┌──(enchanter㉿kali)-[~]
+└─$ cat /etc/passwd |grep /bin/zsh
+root:x:0:0:root:/root:/usr/bin/zsh
+enchanter:x:1000:1000:Enchanter,,,:/home/enchanter:/usr/bin/zsh
+```
+
+”root:x:0:0:root:/root:/usr/bin/zsh“这其中x表示加密过的密码，但是在现代的系统中密码被隐去存储到shadow文件中。第一个0是UID，针对普通用户Linux从1000开始分配id。第二个0是GID这个代表用户属于什么用户组。紧接着的是这个用户的备注以及家目录和登录后的shell由什么来执行。
+
+#### **机器信息枚举：**
+
+```hostname	```显示或设置系统的主机名。
+```uname -a	```显示系统内核信息。
+```cat /etc/issue	```显示系统发行版信息。
+```cat /etc/os-release	```显示详细的系统发行版信息。
+```ps aux	```显示当前系统中所有进程的详细信息。
+```ip a	```显示网络接口的详细信息。
+```routel	```显示路由表信息。
+```ss -anp	```显示套接字信息。
+```cat /etc/iptables/rules.v4	```显示IPv4防火墙规则。
+```ls -lah /etc/cron*	```查看定时任务表。
+```crontab -l```	命令会列出当前用户的定时任务。如果使用 sudo crontab -l，则会显示系统级别的定时任务。
+```dpkg -l Debian```系统执行这个命令我们可以看到当前系统都安装了什么应用
+
+#### **关于文件系统的枚举：**
+
+我们使用 ```find/writable -type d 2>/dev/null```来查找我们可写的文件目录
+在系统启动时候有时候会由一些磁盘被自动挂载到系统我们使用```cat /etc/fstab```命令来列出在系统**启动**时候会自动挂在的文件系统。
+```lsblk```命令来列出现在可用的磁盘
+
+#### **枚举具有s权限的文件：**
+
+`find / -perm -u=s -type f 2>/dev/null`执行这个命令来从根目录查找具有s权限的文件
+
+### 自动枚举
+
+主要由以下几个脚本
+LinEUM、LinPeas、unix-privesc-check
+
+## 查找泄露的敏感信息
+
+### 查找用户留下的信息
+
+在Linux系统中应用通常将用户的信息配置文件等内容存储在用户的家目录下eg：.bashrc。在其中就有可能存在明文存储的一些密码。
+
+另外我们还应该注意结合系统的角色，以及先前获取的正在运行的进程等信息，去相关进程的目录下去查找其对应的配置文件其中就不乏由敏感的密码等内容。eg：wp-config.php mysql-connect.ini等文件。 注意关键词config、conf、passwd等。
+
+### 检查服务留下的信息
+
+与Windows系统不同的是，Linux系统支持用户查看高权限进程的信息。我们可以通过`ps -aux`获取到当前正在运行的所有进程的信息，我们可以在其中看到用户启动这一进程时候的命令等信息，其中可能就存在有passwd内容。
+
+利用`tcpdump`命令我们可以抓取正在交互的tcp数据包，其中也有可能存在明文的认证信息，但是这个命令需要使用root权限，所以除非当前用户拥有sudo运行该命令的权限，否则没啥用就是了。
+
+## 不安全的文件权限配置
+
+### 计划任务
+
+当我们发现存在定时任务时候我们就应该想到要去检查一下定时任务执行的文件的权限如何。如果我们拥有对该文件的写权限，我们就能利用它来执行我们想要的命令。
+
+### /etc/passwd可写
+
+我们可以手动添加任意权限的用户
+
+`openssl passwd admin123`来获取加密后的密码，然后`echo  "root1:密码:0:0:root:/root:/bin/bash" >> /etc/passwd `这样就创建了一个名为root1的root用户。
+
+## 不安全的系统组件
+
+### 具有s权限的二进制文件
+
+https://gtfobins.github.io/基本上就靠这个里面的东西来提权了
+
+### sudo -l
+
+通过这个命令列出我们能sudo执行的命令，然后去搜一下这些命令如何生成/bash等shell
+
+### 内核漏洞
+
+`uname -a`命令得出的系统信息，我们可以上网搜一下有没有内核提权漏洞，这些漏洞基本上就是一些老一点的系统才存在。`searchsploit`命令也能搜索。
+
+一般是.c文件的利用方式，我们尽量在目标系统上面进行编译，否则容易出现错误导致系统崩溃等。
+
+
+## 总结
+感觉有点熟悉的一节，看的异常的快，可能是因为我之前打靶机的时候都能遇到过了。
+感觉这个地方写的比我好多了，所以贴出来吧
+
+::github{repo="Ignitetechnologies/Linux-Privilege-Escalation"}
+
+::github{repo="frizb/Linux-Privilege-Escalation"}
