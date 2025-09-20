@@ -1,0 +1,21 @@
+- links_category: 友人
+  has_thumbnail: false
+  list:
+      - name: luminesun
+        link: https://www.bilibili.com/video/BV1GJ411x7h7/
+        description: 吉祥物皮皮
+        avatar: https://raw.githubusercontent.com/Enchanter-W/Pics/master/pipi.jpg
+        thumbnail: 
+      - name: 丿枫丶轻扬灬
+        link: https://www.bilibili.com/video/BV1GJ411x7h7/
+        description: 大摄影师
+        avatar: https://raw.githubusercontent.com/Enchanter-W/Pics/master/adiao.jpg
+        thumbnail: 
+      - name: Thr2on1
+        link: https://thr2on1.github.io/
+        description: CTF大手子
+        avatar: https://raw.githubusercontent.com/Thr2on1/BlogImages/main/img/thr2on1.jpg
+# - links_category: 师傅们
+#   has_thumbnail: false
+#   list:
+      
