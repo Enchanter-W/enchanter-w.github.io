@@ -30,7 +30,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-11-09T10:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-09T10:01:53.969Z">
+<meta property="article:modified_time" content="2025-11-09T10:07:59.105Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="渗透测试">
 <meta property="article:tag" content="K8s">
@@ -588,8 +588,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-11-09 18:01:53</span>
-            <span class="mobile">2025-11-09 18:01:53</span>
+            <span class="desktop">2025-11-09 18:07:59</span>
+            <span class="mobile">2025-11-09 18:07:59</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -769,7 +769,7 @@
                      data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251109163001705.png"
                       alt="image-20251109163001705"
                 ></p>
-<h3 id="提权枚举"><a href="#提权枚举" class="headerlink" title="提权枚举"></a>提权枚举</h3><p>使用 <code>sudo -l</code> 发现当前用户可以免密码执行 <code>/opt/debug</code>。</p>
+<h3 id="priv-esc"><a href="#priv-esc" class="headerlink" title="priv_esc"></a>priv_esc</h3><p>使用 <code>sudo -l</code> 发现当前用户可以免密码执行 <code>/opt/debug</code>。</p>
 <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">babywyrm@giveback:~$ <span class="built_in">sudo</span> /opt/debug --<span class="built_in">help</span></span><br><span class="line">[<span class="built_in">sudo</span>] password <span class="keyword">for</span> babywyrm: </span><br><span class="line">Validating <span class="built_in">sudo</span>...</span><br><span class="line">Please enter the administrative password: </span><br></pre></td></tr></table></figure></div>
 
 
@@ -818,7 +818,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-11-09 18:01:53
+                    :</strong> 2025-11-09 18:07:59
             </li>
         
         <li>
@@ -947,7 +947,7 @@
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
 		<div class="page-title">HTB_Giveback</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scan"><span class="nav-text">Scan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell"><span class="nav-text">Shell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell1"><span class="nav-text">shell1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell2"><span class="nav-text">shell2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User"><span class="nav-text">User</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E6%9D%83%E6%9E%9A%E4%B8%BE"><span class="nav-text">提权枚举</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Root"><span class="nav-text">Root</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-in-this-box"><span class="nav-text">More in this box</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scan"><span class="nav-text">Scan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell"><span class="nav-text">Shell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell1"><span class="nav-text">shell1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell2"><span class="nav-text">shell2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User"><span class="nav-text">User</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#priv-esc"><span class="nav-text">priv_esc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Root"><span class="nav-text">Root</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-in-this-box"><span class="nav-text">More in this box</span></a></li></ol>
 
 	</div>
 </div>
